@@ -1,0 +1,81 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <!--
+    GRID (1200x630 social card)
+    - Outer margin: 60. Three equal panels: x = 60 / 440 / 820, width 320, gap 60.
+    - Panel axes (centers): x = 220 / 600 / 980. All titles, supports, icons centered on these.
+    - Header "Orient": centered at x=600, baseline y=84.
+    - Icon cards: y=140, height 300 (140..440), rx=24. Icons optically centered at (axis, ~290).
+    - Titles: baseline y=498, Georgia bold 27. Supports: baseline y=536, Helvetica 17.
+    - Palette: paper #faf7f0, ink #1f1d1a, purple #5b50c7, teal #0e9f8a, amber #a87f1f,
+      card #fffdf8, border #e5dfd2.
+  -->
+  <rect width="1200" height="630" fill="#faf7f0"/>
+
+  <!-- Header -->
+  <text x="600" y="84" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-size="32" font-weight="bold" fill="#1f1d1a">Orient</text>
+
+  <!-- Panel cards -->
+  <rect x="60"  y="140" width="320" height="300" rx="24" fill="#fffdf8" stroke="#e5dfd2" stroke-width="2"/>
+  <rect x="440" y="140" width="320" height="300" rx="24" fill="#fffdf8" stroke="#e5dfd2" stroke-width="2"/>
+  <rect x="820" y="140" width="320" height="300" rx="24" fill="#fffdf8" stroke="#e5dfd2" stroke-width="2"/>
+
+  <!-- ============ PANEL 1 : It understands you (axis x=220) ============ -->
+  <!-- North Star -->
+  <path d="M220 184 L230.3 211.8 L259.9 213.0 L236.6 231.4 L244.7 260.0 L220 243.5 L195.3 260.0 L203.4 231.4 L180.1 213.0 L209.7 211.8 Z"
+        fill="#5b50c7"/>
+  <!-- Left speech bubble (you), outlined -->
+  <path d="M134 293 h64 q14 0 14 14 v32 q0 14 -14 14 h-38 l-22 18 v-18 h-4 q-14 0 -14 -14 v-32 q0 -14 14 -14 Z"
+        fill="#fffdf8" stroke="#1f1d1a" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Right speech bubble (the AI), filled -->
+  <path d="M242 308 h64 q14 0 14 14 v32 q0 14 -14 14 h-4 v18 l-22 -18 h-38 q-14 0 -14 -14 v-32 q0 -14 14 -14 Z"
+        fill="#5b50c7"/>
+
+  <!-- ============ PANEL 2 : It directs the build (axis x=600) ============ -->
+  <!-- Orchestrator node -->
+  <circle cx="600" cy="176" r="14" fill="#1f1d1a"/>
+  <!-- Fan-out connectors -->
+  <path d="M600 190 C600 219 545 214 538 238" fill="none" stroke="#1f1d1a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M600 190 C600 219 655 214 662 238" fill="none" stroke="#1f1d1a" stroke-width="4" stroke-linecap="round"/>
+  <!-- Fresh window: build -->
+  <rect x="500" y="238" width="76" height="94" rx="10" fill="#fffdf8" stroke="#1f1d1a" stroke-width="5"/>
+  <line x1="500" y1="260" x2="576" y2="260" stroke="#1f1d1a" stroke-width="4"/>
+  <line x1="524" y1="316" x2="550" y2="290" stroke="#1f1d1a" stroke-width="6" stroke-linecap="round"/>
+  <rect x="544" y="270" width="16" height="36" rx="5" fill="#1f1d1a" transform="rotate(-45 552 288)"/>
+  <!-- Fresh window: judge -->
+  <rect x="624" y="238" width="76" height="94" rx="10" fill="#fffdf8" stroke="#1f1d1a" stroke-width="5"/>
+  <line x1="624" y1="260" x2="700" y2="260" stroke="#1f1d1a" stroke-width="4"/>
+  <circle cx="658" cy="294" r="13" fill="none" stroke="#1f1d1a" stroke-width="6"/>
+  <line x1="667" y1="303" x2="680" y2="316" stroke="#1f1d1a" stroke-width="6" stroke-linecap="round"/>
+  <!-- Converging connectors -->
+  <path d="M538 332 C542 356 585 356 594 370" fill="none" stroke="#1f1d1a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M662 332 C658 356 615 356 606 370" fill="none" stroke="#1f1d1a" stroke-width="4" stroke-linecap="round"/>
+  <!-- Done -->
+  <circle cx="600" cy="396" r="26" fill="#0e9f8a"/>
+  <path d="M587 396 l10 11 l18 -21" fill="none" stroke="#fffdf8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ============ PANEL 3 : It improves itself (axis x=980) ============ -->
+  <!-- Loop arrow around the stack, open at top -->
+  <path d="M1029 215.1 A98 98 0 1 1 931 215.1" fill="none" stroke="#a87f1f" stroke-width="8" stroke-linecap="round"/>
+  <path d="M0 0 L-25 -10 L-25 10 Z" fill="#a87f1f" transform="translate(948 205) rotate(-30)"/>
+  <!-- Plus badge in the gap -->
+  <circle cx="980" cy="205" r="16" fill="#a87f1f"/>
+  <line x1="972" y1="205" x2="988" y2="205" stroke="#fffdf8" stroke-width="5" stroke-linecap="round"/>
+  <line x1="980" y1="197" x2="980" y2="213" stroke="#fffdf8" stroke-width="5" stroke-linecap="round"/>
+  <!-- Growing stack: new chip dropping in -->
+  <rect x="928" y="252" width="104" height="26" rx="9" fill="#a87f1f"/>
+  <rect x="928" y="306" width="104" height="26" rx="9" fill="#fffdf8" stroke="#1f1d1a" stroke-width="5"/>
+  <rect x="928" y="340" width="104" height="26" rx="9" fill="#fffdf8" stroke="#1f1d1a" stroke-width="5"/>
+
+  <!-- ============ TITLES + SUPPORT ============ -->
+  <text x="220" y="498" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-size="27" font-weight="bold" fill="#1f1d1a">It understands you</text>
+  <text x="600" y="498" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-size="27" font-weight="bold" fill="#1f1d1a">It directs the build</text>
+  <text x="980" y="498" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-size="27" font-weight="bold" fill="#1f1d1a">It improves itself</text>
+
+  <text x="220" y="536" text-anchor="middle" font-size="17" fill="#1f1d1a" opacity="0.62">One shared goal before any code</text>
+  <text x="600" y="536" text-anchor="middle" font-size="17" fill="#1f1d1a" opacity="0.62">Fresh agents build it, then judge it</text>
+  <text x="980" y="536" text-anchor="middle" font-size="17" fill="#1f1d1a" opacity="0.62">Every run makes the next one sharper</text>
+</svg>

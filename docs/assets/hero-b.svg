@@ -1,0 +1,134 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The journey of your idea through Orient">
+  <!--
+    GRID
+    Station centers : x = 120, 280, 440, 600, 760, 920, 1080  (7 stations, 160px apart)
+    Main path       : y = 272, stroke 11, one continuous stroke x 56 to 1144
+    Station badges  : circles r 44 / cards 100x88, all centered on (x, 272), span y 228 to 316
+    Labels          : 15px Helvetica bold caps, one baseline y = 360, centered on station x
+    Loop            : horizontal run y = 488, parallel to main path; chip stacks at x = 840, 600, 360 (240px apart), centered on the run
+    Loop label      : centered x = 600, baseline y = 556
+    Title           : Georgia 42, centered x = 600, baseline y = 78
+    Icon strokes    : 4.5 throughout; filled marks (star, hammer, flag) carry accent color
+    WORD COUNT     : 18 of 30 (title 5 + station labels 10 + loop label 3)
+  -->
+  <defs>
+    <marker id="loopArrow" viewBox="0 0 12 10" refX="8" refY="5" markerWidth="26" markerHeight="22" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M 0 0 L 12 5 L 0 10 Z" fill="#5b50c7"/>
+    </marker>
+  </defs>
+
+  <!-- paper -->
+  <rect width="1200" height="630" fill="#faf7f0"/>
+
+  <!-- title -->
+  <text x="600" y="90" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" fill="#1f1d1a">The journey of your idea</text>
+
+  <!-- ============ THE LOOP (drawn first, sits beneath) ============ -->
+  <path d="M 1080 312 C 1146 342 1154 430 1048 472 C 1016 484 996 488 960 488 L 260 488 C 186 488 132 458 96 388"
+        fill="none" stroke="#5b50c7" stroke-width="6" stroke-linecap="round" marker-end="url(#loopArrow)"/>
+
+  <!-- chip stacks, growing along the direction of travel (right to left): 1, 2, 3 -->
+  <g stroke="#5b50c7" stroke-width="2.5" fill="#fffdf8">
+    <rect x="812" y="480" width="56" height="16" rx="8"/>
+    <rect x="572" y="469" width="56" height="16" rx="8"/>
+    <rect x="572" y="491" width="56" height="16" rx="8"/>
+    <rect x="332" y="458" width="56" height="16" rx="8"/>
+    <rect x="332" y="480" width="56" height="16" rx="8"/>
+    <rect x="332" y="502" width="56" height="16" rx="8"/>
+  </g>
+
+  <!-- loop label -->
+  <text x="600" y="556" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="2" fill="#5b50c7">IT IMPROVES ITSELF</text>
+
+  <!-- ============ THE MAIN PATH (the hero) ============ -->
+  <path d="M 56 272 L 1144 272" fill="none" stroke="#1f1d1a" stroke-width="11" stroke-linecap="round"/>
+  <!-- direction chevrons cut into the path at segment midpoints x = 200, 360, 520, 680, 840, 1000 -->
+  <g fill="none" stroke="#faf7f0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 196 267.5 L 204 272 L 196 276.5"/>
+    <path d="M 356 267.5 L 364 272 L 356 276.5"/>
+    <path d="M 516 267.5 L 524 272 L 516 276.5"/>
+    <path d="M 676 267.5 L 684 272 L 676 276.5"/>
+    <path d="M 836 267.5 L 844 272 L 836 276.5"/>
+    <path d="M 996 267.5 L 1004 272 L 996 276.5"/>
+  </g>
+
+  <!-- ============ STATIONS ============ -->
+
+  <!-- 1 · YOU (x=120) : person -->
+  <g transform="translate(120 272)">
+    <circle r="44" fill="#fffdf8" stroke="#1f1d1a" stroke-width="3"/>
+    <g fill="none" stroke="#1f1d1a" stroke-width="4.5" stroke-linecap="round">
+      <circle cx="0" cy="-10" r="9"/>
+      <path d="M -16 19 C -16 3 16 3 16 19"/>
+    </g>
+  </g>
+
+  <!-- 2 · THE CONVERSATION (x=280) : two speech bubbles, yours ink + the AI's purple -->
+  <g transform="translate(280 272)">
+    <circle r="44" fill="#fffdf8" stroke="#1f1d1a" stroke-width="3"/>
+    <g fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <g stroke="#1f1d1a">
+        <rect x="-26" y="-22" width="30" height="21" rx="7"/>
+        <path d="M -17 -1 L -13 6 L -9 -1"/>
+      </g>
+      <g stroke="#5b50c7">
+        <rect x="-4" y="-4" width="30" height="21" rx="7"/>
+        <path d="M 9 17 L 13 24 L 17 17"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- 3 · NORTH STAR (x=440) : four-point star, amber -->
+  <g transform="translate(440 272)">
+    <circle r="44" fill="#fffdf8" stroke="#1f1d1a" stroke-width="3"/>
+    <path d="M 0 -28 L 7 -7 L 28 0 L 7 7 L 0 28 L -7 7 L -28 0 L -7 -7 Z" fill="#a87f1f"/>
+  </g>
+
+  <!-- 4 · BUILD (x=600) : fresh-window card, purple hammer -->
+  <g transform="translate(600 272)">
+    <rect x="-50" y="-44" width="100" height="88" rx="14" fill="#fffdf8" stroke="#1f1d1a" stroke-width="3"/>
+    <line x1="-50" y1="-20" x2="50" y2="-20" stroke="#e5dfd2" stroke-width="2.5"/>
+    <circle cx="-36" cy="-32" r="3.5" fill="#1f1d1a"/>
+    <circle cx="-24" cy="-32" r="3.5" fill="#1f1d1a"/>
+    <g transform="translate(0 13) rotate(45)">
+      <rect x="-16" y="-19" width="32" height="12" rx="3" fill="#5b50c7"/>
+      <rect x="-3.5" y="-7" width="7" height="27" rx="3.5" fill="#5b50c7"/>
+    </g>
+  </g>
+
+  <!-- 5 · JUDGE (x=760) : fresh-window card, teal magnifier -->
+  <g transform="translate(760 272)">
+    <rect x="-50" y="-44" width="100" height="88" rx="14" fill="#fffdf8" stroke="#1f1d1a" stroke-width="3"/>
+    <line x1="-50" y1="-20" x2="50" y2="-20" stroke="#e5dfd2" stroke-width="2.5"/>
+    <circle cx="-36" cy="-32" r="3.5" fill="#1f1d1a"/>
+    <circle cx="-24" cy="-32" r="3.5" fill="#1f1d1a"/>
+    <g fill="none" stroke="#0e9f8a" stroke-width="4.5" stroke-linecap="round">
+      <circle cx="-4" cy="8" r="11.5"/>
+      <path d="M 5 17 L 16 28"/>
+    </g>
+  </g>
+
+  <!-- 6 · YOUR YES (x=920) : teal check -->
+  <g transform="translate(920 272)">
+    <circle r="44" fill="#fffdf8" stroke="#1f1d1a" stroke-width="3"/>
+    <path d="M -17 2 L -5 14 L 18 -12" fill="none" stroke="#0e9f8a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 7 · SHIPPED (x=1080) : flag, amber like the star you set out for -->
+  <g transform="translate(1080 272)">
+    <circle r="44" fill="#fffdf8" stroke="#1f1d1a" stroke-width="3"/>
+    <path d="M -10 -24 L -10 24" fill="none" stroke="#1f1d1a" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M -10 -24 L 20 -14 L -10 -4 Z" fill="#a87f1f"/>
+  </g>
+
+  <!-- ============ LABELS, one shared baseline y=360 ============ -->
+  <g font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="1" fill="#1f1d1a" text-anchor="middle">
+    <text x="120" y="360">YOU</text>
+    <text x="280" y="360">THE CONVERSATION</text>
+    <text x="440" y="360">NORTH STAR</text>
+    <text x="600" y="360">BUILD</text>
+    <text x="760" y="360">JUDGE</text>
+    <text x="920" y="360">YOUR YES</text>
+    <text x="1080" y="360">SHIPPED</text>
+  </g>
+</svg>

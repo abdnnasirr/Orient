@@ -1,0 +1,313 @@
+<svg viewBox="0 0 1000 1010" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How Orient works, in three systems: the orchestration, where you and the orchestrator reach a North Star and delegate the build to fresh Execute and Critique agents that end at your approval; the skills library the agents draw from; and the self-improving foundation, which watches the whole orchestration, sharpens the skills, and files pages into a brain you own.">
+  <defs>
+    <!-- ===== palette (flat, dark, premium doc) =====
+         violet #8f83f3 · teal #45b8c6 · amber #e3a83d · green #62b06b
+         ink bg #15181f · panel #1c2029 · card #232834 · hairline #2b303c
+         text #ecebe6 · secondary #9aa0ab · arrow #7d838f -->
+
+    <!-- arrow markers -->
+    <marker id="aFlow" viewBox="0 0 12 10" refX="8" refY="5" markerWidth="6.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M0 0 L12 5 L0 10 Z" fill="#7d838f"/>
+    </marker>
+    <marker id="aGreen" viewBox="0 0 12 10" refX="8" refY="5" markerWidth="6" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 L12 5 L0 10 Z" fill="#62b06b"/>
+    </marker>
+    <marker id="aAmber" viewBox="0 0 12 10" refX="8" refY="5" markerWidth="7" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L12 5 L0 10 Z" fill="#e3a83d"/>
+    </marker>
+  </defs>
+
+  <!-- ===== flat dark ink background ===== -->
+  <rect width="1000" height="1010" fill="#15181f"/>
+
+  <!-- =================================================================================
+       ZONE PANELS · three flat dark cards, stacked and aligned
+       all panels x=140 w=720 · zone1 56..466 · zone2 490..696 · zone3 720..978
+       ================================================================================= -->
+  <g>
+    <rect x="140" y="56" width="720" height="410" rx="24" fill="#1c2029" stroke="#2b303c" stroke-width="1"/>
+    <rect x="140" y="56" width="720" height="410" rx="24" fill="none" stroke="#8f83f3" stroke-opacity="0.30" stroke-width="1"/>
+    <rect x="140" y="490" width="720" height="206" rx="24" fill="#1c2029" stroke="#2b303c" stroke-width="1"/>
+    <rect x="140" y="490" width="720" height="206" rx="24" fill="none" stroke="#7d838f" stroke-opacity="0.28" stroke-width="1"/>
+    <rect x="140" y="720" width="720" height="258" rx="24" fill="#1c2029" stroke="#2b303c" stroke-width="1"/>
+    <rect x="140" y="720" width="720" height="258" rx="24" fill="none" stroke="#62b06b" stroke-opacity="0.34" stroke-width="1"/>
+  </g>
+
+  <!-- =================================================================================
+       ZONE 1 · THE ORCHESTRATION
+       heart row y=160: YOU 330 · ORCHESTRATOR 500 · NORTH STAR 690
+       build row y=384: PLAN 200 · EXECUTE 410 · CRITIQUE 590 · APPROVE 800
+       ================================================================================= -->
+  <text x="500" y="92" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="4" fill="#8f83f3">THE ORCHESTRATION</text>
+
+  <!-- conversation tether: YOU <-> ORCHESTRATOR (one clean gray double-headed arrow, spine weight) -->
+  <path d="M373 160 L432 160" fill="none" stroke="#7d838f" stroke-width="3" stroke-linecap="round" opacity="1" marker-start="url(#aFlow)" marker-end="url(#aFlow)"/>
+  <!-- reach: ORCHESTRATOR -> NORTH STAR -->
+  <path d="M566 160 L642 160" fill="none" stroke="#e3a83d" stroke-width="2.4" stroke-linecap="round" opacity="0.95" marker-end="url(#aAmber)"/>
+
+  <!-- YOU x=330 -->
+  <g transform="translate(330 160)">
+    <circle r="34" fill="#232834" stroke="#2b303c" stroke-width="1.4"/>
+    <circle r="34" fill="none" stroke="#8f83f3" stroke-opacity="0.6" stroke-width="1.3"/>
+    <g fill="none" stroke="#8f83f3" stroke-width="3.4" stroke-linecap="round">
+      <circle cx="0" cy="-8" r="7.5"/>
+      <path d="M-14 15 C-14 1 14 1 14 15"/>
+    </g>
+    <text x="0" y="58" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.5" fill="#ecebe6">YOU</text>
+  </g>
+
+  <!-- ORCHESTRATOR — the command center, largest node -->
+  <g transform="translate(500 160)">
+    <circle r="54" fill="#232834" stroke="#8f83f3" stroke-opacity="0.75" stroke-width="1.8"/>
+    <circle r="54" fill="none" stroke="#2b303c" stroke-width="1"/>
+    <circle r="40" fill="none" stroke="#8f83f3" stroke-opacity="0.45" stroke-width="1" stroke-dasharray="2.5 5.5"/>
+    <!-- orchestration glyph: a central node directing outward -->
+    <g>
+      <line x1="0" y1="0" x2="0" y2="-26" stroke="#8f83f3" stroke-width="2.4" stroke-linecap="round" opacity="0.95"/>
+      <line x1="0" y1="0" x2="22" y2="14" stroke="#8f83f3" stroke-width="2.4" stroke-linecap="round" opacity="0.95"/>
+      <line x1="0" y1="0" x2="-22" y2="14" stroke="#8f83f3" stroke-width="2.4" stroke-linecap="round" opacity="0.95"/>
+      <circle cx="0" cy="-26" r="5.5" fill="#8f83f3"/>
+      <circle cx="22" cy="14" r="5.5" fill="#8f83f3"/>
+      <circle cx="-22" cy="14" r="5.5" fill="#8f83f3"/>
+      <circle cx="0" cy="0" r="8.5" fill="#8f83f3"/>
+    </g>
+    <text x="0" y="80" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="1" fill="#ecebe6">ORCHESTRATOR</text>
+    <text x="0" y="97" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#9aa0ab" font-style="italic">the command center</text>
+  </g>
+
+  <!-- NORTH STAR x=690 -->
+  <g transform="translate(690 160)">
+    <circle r="34" fill="#232834" stroke="#2b303c" stroke-width="1.4"/>
+    <circle r="34" fill="none" stroke="#e3a83d" stroke-opacity="0.65" stroke-width="1.3"/>
+    <path d="M0 -23 L6.3 -6.3 L23 0 L6.3 6.3 L0 23 L-6.3 6.3 L-23 0 L-6.3 -6.3 Z" fill="#e3a83d"/>
+    <text x="0" y="58" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1" fill="#ecebe6">NORTH STAR</text>
+    <text x="0" y="75" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#9aa0ab" font-style="italic">held by every agent</text>
+  </g>
+
+  <!-- orchestrator hands off downward into PLAN (routed clear of the title text) -->
+  <path d="M462 198 C420 235 330 290 225 358" fill="none" stroke="#7d838f" stroke-width="2.6" stroke-linecap="round" opacity="0.95" marker-end="url(#aFlow)"/>
+
+  <!-- delegate spine: PLAN -> EXECUTE -> CRITIQUE -> APPROVE -->
+  <g fill="none" stroke="#7d838f" stroke-width="3" stroke-linecap="round" opacity="1">
+    <path d="M232 384 L352 384" marker-end="url(#aFlow)"/>
+    <path d="M466 384 L534 384" marker-end="url(#aFlow)"/>
+    <path d="M648 384 L742 384" marker-end="url(#aFlow)"/>
+  </g>
+
+  <!-- PLAN x=200 (stage, dashed ring) -->
+  <g transform="translate(200 384)">
+    <circle r="27" fill="#232834" stroke="#7d838f" stroke-opacity="0.75" stroke-width="1.4" stroke-dasharray="4 4"/>
+    <g stroke="#c3c8d0" stroke-width="2.8" stroke-linecap="round">
+      <line x1="-9" y1="-7.5" x2="9" y2="-7.5"/>
+      <line x1="-9" y1="0" x2="9" y2="0"/>
+      <line x1="-9" y1="7.5" x2="3" y2="7.5"/>
+    </g>
+    <text x="0" y="48" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1" fill="#ecebe6">PLAN</text>
+  </g>
+
+  <!-- EXECUTE (violet fresh-window entity) x=410 -->
+  <g transform="translate(410 384)">
+    <text x="0" y="-56" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#9aa0ab" font-style="italic">fresh window</text>
+    <rect x="-52" y="-46" width="104" height="90" rx="14" fill="#232834" stroke="#8f83f3" stroke-opacity="0.8" stroke-width="1.6"/>
+    <line x1="-52" y1="-25" x2="52" y2="-25" stroke="#8f83f3" stroke-opacity="0.45" stroke-width="1.2"/>
+    <circle cx="-40" cy="-35.5" r="2.6" fill="#8f83f3"/>
+    <circle cx="-30" cy="-35.5" r="2.6" fill="#8f83f3" opacity="0.6"/>
+    <circle cx="-20" cy="-35.5" r="2.6" fill="#8f83f3" opacity="0.35"/>
+    <g transform="translate(0 11) rotate(45)">
+      <rect x="-15" y="-16" width="30" height="10" rx="3" fill="#8f83f3"/>
+      <rect x="-3.5" y="-6" width="7" height="26" rx="3" fill="#8f83f3"/>
+    </g>
+    <text x="0" y="68" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.5" fill="#ecebe6">EXECUTE</text>
+  </g>
+
+  <!-- CRITIQUE (teal fresh-window entity) x=590 -->
+  <g transform="translate(590 384)">
+    <text x="0" y="-56" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#9aa0ab" font-style="italic">fresh window</text>
+    <rect x="-52" y="-46" width="104" height="90" rx="14" fill="#232834" stroke="#45b8c6" stroke-opacity="0.8" stroke-width="1.6"/>
+    <line x1="-52" y1="-25" x2="52" y2="-25" stroke="#45b8c6" stroke-opacity="0.45" stroke-width="1.2"/>
+    <circle cx="-40" cy="-35.5" r="2.6" fill="#45b8c6"/>
+    <circle cx="-30" cy="-35.5" r="2.6" fill="#45b8c6" opacity="0.6"/>
+    <circle cx="-20" cy="-35.5" r="2.6" fill="#45b8c6" opacity="0.35"/>
+    <g fill="none" stroke="#45b8c6" stroke-width="3.6" stroke-linecap="round">
+      <circle cx="-3" cy="6" r="11"/>
+      <path d="M6 15 L17 26"/>
+    </g>
+    <text x="0" y="68" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.5" fill="#ecebe6">CRITIQUE</text>
+  </g>
+
+  <!-- APPROVE x=800 (you — the one call agents never make) -->
+  <g transform="translate(800 384)">
+    <text x="0" y="-42" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#9aa0ab" font-style="italic">you</text>
+    <circle r="32" fill="#232834" stroke="#2b303c" stroke-width="1.4"/>
+    <circle r="32" fill="none" stroke="#62b06b" stroke-opacity="0.65" stroke-width="1.3"/>
+    <path d="M-14 2 L-3 13 L15 -11" fill="none" stroke="#62b06b" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="0" y="54" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.5" fill="#ecebe6">APPROVE</text>
+  </g>
+
+  <!-- =================================================================================
+       ZONE 2 · SKILLS LIBRARY
+       7 page-cards w=68 h=92, top y=562 · centers 236,324,412,500,588,676,764
+       ================================================================================= -->
+  <text x="500" y="521" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="4" fill="#9aa0ab">SKILLS LIBRARY</text>
+  <text x="500" y="539" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#9aa0ab" font-style="italic">a shelf of skills the agents draw from</text>
+
+  <!-- zone-level: the skills library feeds the orchestration (one quiet dotted connector, panel edge to panel edge) -->
+  <path d="M410 490 L410 470" fill="none" stroke="#7d838f" stroke-width="1.5" stroke-dasharray="1.5 6" stroke-linecap="round" opacity="0.9" marker-end="url(#aFlow)"/>
+
+  <!-- orient (violet) c=236 -->
+  <g transform="translate(202 562)">
+    <rect width="68" height="92" rx="9" fill="#232834" stroke="#2b303c" stroke-width="1"/>
+    <path d="M52 0 L68 16 L52 16 Z" fill="#1c2029"/>
+    <path d="M52 0 L52 16 L68 16" fill="none" stroke="#2b303c" stroke-width="1"/>
+    <circle cx="17" cy="22" r="4.5" fill="#8f83f3"/>
+    <g stroke="#4a4f5b" stroke-width="2" stroke-linecap="round">
+      <line x1="13" y1="42" x2="55" y2="42"/><line x1="13" y1="53" x2="55" y2="53"/>
+      <line x1="13" y1="64" x2="55" y2="64"/><line x1="13" y1="75" x2="40" y2="75"/>
+    </g>
+    <text x="34" y="110" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#ecebe6">orient</text>
+  </g>
+  <!-- build (violet) c=324 -->
+  <g transform="translate(290 562)">
+    <rect width="68" height="92" rx="9" fill="#232834" stroke="#2b303c" stroke-width="1"/>
+    <path d="M52 0 L68 16 L52 16 Z" fill="#1c2029"/>
+    <path d="M52 0 L52 16 L68 16" fill="none" stroke="#2b303c" stroke-width="1"/>
+    <circle cx="17" cy="22" r="4.5" fill="#8f83f3"/>
+    <g stroke="#4a4f5b" stroke-width="2" stroke-linecap="round">
+      <line x1="13" y1="42" x2="55" y2="42"/><line x1="13" y1="53" x2="55" y2="53"/>
+      <line x1="13" y1="64" x2="55" y2="64"/><line x1="13" y1="75" x2="40" y2="75"/>
+    </g>
+    <text x="34" y="110" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#ecebe6">build</text>
+  </g>
+  <!-- ui-design (violet) c=412 -->
+  <g transform="translate(378 562)">
+    <rect width="68" height="92" rx="9" fill="#232834" stroke="#2b303c" stroke-width="1"/>
+    <path d="M52 0 L68 16 L52 16 Z" fill="#1c2029"/>
+    <path d="M52 0 L52 16 L68 16" fill="none" stroke="#2b303c" stroke-width="1"/>
+    <circle cx="17" cy="22" r="4.5" fill="#8f83f3"/>
+    <g stroke="#4a4f5b" stroke-width="2" stroke-linecap="round">
+      <line x1="13" y1="42" x2="55" y2="42"/><line x1="13" y1="53" x2="55" y2="53"/>
+      <line x1="13" y1="64" x2="55" y2="64"/><line x1="13" y1="75" x2="40" y2="75"/>
+    </g>
+    <text x="34" y="110" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#ecebe6">ui-design</text>
+  </g>
+  <!-- critique (teal) c=500 -->
+  <g transform="translate(466 562)">
+    <rect width="68" height="92" rx="9" fill="#232834" stroke="#2b303c" stroke-width="1"/>
+    <path d="M52 0 L68 16 L52 16 Z" fill="#1c2029"/>
+    <path d="M52 0 L52 16 L68 16" fill="none" stroke="#2b303c" stroke-width="1"/>
+    <circle cx="17" cy="22" r="4.5" fill="#45b8c6"/>
+    <g stroke="#4a4f5b" stroke-width="2" stroke-linecap="round">
+      <line x1="13" y1="42" x2="55" y2="42"/><line x1="13" y1="53" x2="55" y2="53"/>
+      <line x1="13" y1="64" x2="55" y2="64"/><line x1="13" y1="75" x2="40" y2="75"/>
+    </g>
+    <text x="34" y="110" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#ecebe6">critique</text>
+  </g>
+  <!-- write-brain (amber) c=588 -->
+  <g transform="translate(554 562)">
+    <rect width="68" height="92" rx="9" fill="#232834" stroke="#2b303c" stroke-width="1"/>
+    <path d="M52 0 L68 16 L52 16 Z" fill="#1c2029"/>
+    <path d="M52 0 L52 16 L68 16" fill="none" stroke="#2b303c" stroke-width="1"/>
+    <circle cx="17" cy="22" r="4.5" fill="#e3a83d"/>
+    <g stroke="#4a4f5b" stroke-width="2" stroke-linecap="round">
+      <line x1="13" y1="42" x2="55" y2="42"/><line x1="13" y1="53" x2="55" y2="53"/>
+      <line x1="13" y1="64" x2="55" y2="64"/><line x1="13" y1="75" x2="40" y2="75"/>
+    </g>
+    <text x="34" y="110" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#ecebe6">write-brain</text>
+  </g>
+  <!-- write-prompts (green) c=676 -->
+  <g transform="translate(642 562)">
+    <rect width="68" height="92" rx="9" fill="#232834" stroke="#2b303c" stroke-width="1"/>
+    <path d="M52 0 L68 16 L52 16 Z" fill="#1c2029"/>
+    <path d="M52 0 L52 16 L68 16" fill="none" stroke="#2b303c" stroke-width="1"/>
+    <circle cx="17" cy="22" r="4.5" fill="#62b06b"/>
+    <g stroke="#4a4f5b" stroke-width="2" stroke-linecap="round">
+      <line x1="13" y1="42" x2="55" y2="42"/><line x1="13" y1="53" x2="55" y2="53"/>
+      <line x1="13" y1="64" x2="55" y2="64"/><line x1="13" y1="75" x2="40" y2="75"/>
+    </g>
+    <text x="34" y="110" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#ecebe6">write-prompts</text>
+  </g>
+  <!-- add your own (empty, dashed, + icon) c=764 -->
+  <g transform="translate(730 562)">
+    <rect width="68" height="92" rx="9" fill="#1c2029" stroke="#7d838f" stroke-opacity="0.65" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <g stroke="#9aa0ab" stroke-width="3" stroke-linecap="round">
+      <line x1="34" y1="36" x2="34" y2="58"/>
+      <line x1="23" y1="47" x2="45" y2="47"/>
+    </g>
+    <text x="34" y="110" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#9aa0ab">add your own</text>
+  </g>
+
+  <!-- =================================================================================
+       ZONE 3 · SELF-IMPROVING
+       SELF-IMPROVE x=500 y=810 · BRAIN library x=500 y=896
+       ================================================================================= -->
+  <text x="500" y="750" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="4" fill="#62b06b">SELF-IMPROVING</text>
+
+  <!-- watch: rises from the loop to the WHOLE orchestration zone (anchored on the panel edge itself) -->
+  <path d="M820 466 C880 500 908 560 908 640 L908 782 Q908 810 880 810 L584 810" fill="none" stroke="#62b06b" stroke-width="2.4" stroke-dasharray="1 7.5" stroke-linecap="round" opacity="0.95" marker-end="url(#aGreen)"/>
+  <circle cx="820" cy="466" r="4.5" fill="#62b06b"/>
+  <text x="926" y="630" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#62b06b" font-style="italic" transform="rotate(90 926 630)">watches your pushback</text>
+
+  <!-- output 1: sharpens the skills — into the whole library (panel edge), up the left margin -->
+  <path d="M430 810 L118 810 Q96 810 96 788 L96 612 Q96 590 118 590 L132 590" fill="none" stroke="#62b06b" stroke-width="2.4" stroke-linecap="round" opacity="0.95" marker-end="url(#aGreen)"/>
+  <text x="114" y="700" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#62b06b" transform="rotate(-90 114 700)">sharpens the skills</text>
+
+  <!-- SELF-IMPROVE agent (green fresh-window entity) x=500 y=810 -->
+  <g transform="translate(500 810)">
+    <rect x="-70" y="-38" width="140" height="76" rx="14" fill="#232834" stroke="#62b06b" stroke-opacity="0.85" stroke-width="1.7"/>
+    <line x1="-70" y1="-18" x2="70" y2="-18" stroke="#62b06b" stroke-opacity="0.45" stroke-width="1.2"/>
+    <circle cx="-58" cy="-28" r="2.5" fill="#62b06b"/>
+    <circle cx="-48" cy="-28" r="2.5" fill="#62b06b" opacity="0.6"/>
+    <circle cx="-38" cy="-28" r="2.5" fill="#62b06b" opacity="0.35"/>
+    <g transform="translate(0 3)">
+      <path d="M11 -3 A12 12 0 1 1 7 -11" fill="none" stroke="#62b06b" stroke-width="3.2" stroke-linecap="round"/>
+      <path d="M11 -8 L13 0 L4 -2.5 Z" fill="#62b06b"/>
+    </g>
+    <text x="0" y="30" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#ecebe6">SELF-IMPROVE</text>
+  </g>
+
+  <!-- ANNOTATION: the self-improve gate — tests every change, keeps what wins -->
+  <text x="704" y="792" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#4d8a54" font-style="italic">tests every change, keeps what wins</text>
+
+  <!-- output 2: files pages — down into the BRAIN library (equal twin of output 1) -->
+  <path d="M500 850 L500 860" fill="none" stroke="#62b06b" stroke-width="2.4" stroke-linecap="round" opacity="0.95" marker-end="url(#aGreen)"/>
+  <text x="452" y="858" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#62b06b">files pages</text>
+
+  <!-- ANNOTATION: the brain feeds back — dotted amber up the FAR-LEFT margin (outside the green "sharpens the skills" rail at x~96), into the orchestration zone's left edge -->
+  <path d="M290 896 Q58 896 58 872 L58 285 Q58 261 82 261 L137 261" fill="none" stroke="#e3a83d" stroke-width="1.5" stroke-dasharray="1.5 6" stroke-linecap="round" opacity="0.5" marker-end="url(#aAmber)"/>
+  <text x="46" y="560" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#9aa0ab" font-style="italic" transform="rotate(-90 46 560)">feeds every session</text>
+
+  <!-- BRAIN — a living library: a wide, symmetric shelf of many pages -->
+  <g transform="translate(500 896)">
+    <!-- back row: many dim pages, fanned symmetrically -->
+    <g opacity="0.7">
+      <rect x="-206" y="-26" width="30" height="42" rx="5" fill="#1f232c" stroke="#2b303c" stroke-width="1"/>
+      <rect x="-170" y="-30" width="30" height="42" rx="5" fill="#1f232c" stroke="#2b303c" stroke-width="1"/>
+      <rect x="-134" y="-32" width="30" height="42" rx="5" fill="#1f232c" stroke="#2b303c" stroke-width="1"/>
+      <rect x="-98"  y="-33" width="30" height="42" rx="5" fill="#1f232c" stroke="#2b303c" stroke-width="1"/>
+      <rect x="68"   y="-33" width="30" height="42" rx="5" fill="#1f232c" stroke="#2b303c" stroke-width="1"/>
+      <rect x="104"  y="-32" width="30" height="42" rx="5" fill="#1f232c" stroke="#2b303c" stroke-width="1"/>
+      <rect x="140"  y="-30" width="30" height="42" rx="5" fill="#1f232c" stroke="#2b303c" stroke-width="1"/>
+      <rect x="176"  y="-26" width="30" height="42" rx="5" fill="#1f232c" stroke="#2b303c" stroke-width="1"/>
+    </g>
+    <!-- front row: five bright, ruled pages centered on 0 -->
+    <g>
+      <rect x="-140" y="-16" width="42" height="56" rx="6" fill="#232834" stroke="#2b303c" stroke-width="1"/>
+      <g stroke="#e3a83d" stroke-width="1.8" stroke-linecap="round" opacity="0.6"><line x1="-131" y1="-4" x2="-107" y2="-4"/><line x1="-131" y1="6" x2="-107" y2="6"/><line x1="-131" y1="16" x2="-115" y2="16"/></g>
+
+      <rect x="-90" y="-22" width="44" height="62" rx="6" fill="#232834" stroke="#2b303c" stroke-width="1"/>
+      <g stroke="#e3a83d" stroke-width="1.8" stroke-linecap="round" opacity="0.68"><line x1="-81" y1="-10" x2="-55" y2="-10"/><line x1="-81" y1="0" x2="-55" y2="0"/><line x1="-81" y1="10" x2="-55" y2="10"/><line x1="-81" y1="20" x2="-66" y2="20"/></g>
+
+      <!-- center page, tallest — the spine of the library -->
+      <rect x="-24" y="-30" width="48" height="70" rx="7" fill="#232834" stroke="#e3a83d" stroke-opacity="0.5" stroke-width="1.2"/>
+      <g stroke="#e3a83d" stroke-width="1.9" stroke-linecap="round" opacity="0.78"><line x1="-15" y1="-18" x2="15" y2="-18"/><line x1="-15" y1="-7" x2="15" y2="-7"/><line x1="-15" y1="4" x2="15" y2="4"/><line x1="-15" y1="15" x2="15" y2="15"/><line x1="-15" y1="26" x2="4" y2="26"/></g>
+
+      <rect x="46" y="-22" width="44" height="62" rx="6" fill="#232834" stroke="#2b303c" stroke-width="1"/>
+      <g stroke="#e3a83d" stroke-width="1.8" stroke-linecap="round" opacity="0.68"><line x1="55" y1="-10" x2="81" y2="-10"/><line x1="55" y1="0" x2="81" y2="0"/><line x1="55" y1="10" x2="81" y2="10"/><line x1="55" y1="20" x2="70" y2="20"/></g>
+
+      <rect x="98" y="-16" width="42" height="56" rx="6" fill="#232834" stroke="#2b303c" stroke-width="1"/>
+      <g stroke="#e3a83d" stroke-width="1.8" stroke-linecap="round" opacity="0.6"><line x1="107" y1="-4" x2="131" y2="-4"/><line x1="107" y1="6" x2="131" y2="6"/><line x1="107" y1="16" x2="123" y2="16"/></g>
+    </g>
+    <text x="0" y="58" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2" fill="#ecebe6">BRAIN</text>
+    <text x="0" y="74" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#9aa0ab" font-style="italic">a whole library you own</text>
+  </g>
+</svg>

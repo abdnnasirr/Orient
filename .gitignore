@@ -1,0 +1,22 @@
+node_modules/
+.DS_Store
+
+# runtime-only enforcement state
+.claude/.flow-state.json
+
+# eval cases are local/user-specific by default.
+# The public repo ships the method, not anyone's gold cases.
+evals/**
+!evals/
+!evals/README.md
+
+# personal voice skill, local-only, not shipped
+skills/my-voice/
+
+# personal content skill, local-only, not shipped
+skills/content/
+
+# personal working documents, local-only, not shipped
+core/the-core-idea.html
+surface/self-improver.html
+surface/design-skills-inventory.md

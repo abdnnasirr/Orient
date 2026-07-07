@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534a"/>
+    </marker>
+    <marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5b50c7"/>
+    </marker>
+    <marker id="arrT" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0e9f8a"/>
+    </marker>
+  </defs>
+
+  <!-- canvas -->
+  <rect width="1200" height="800" rx="18" fill="#faf7f0"/>
+  <rect x="1" y="1" width="1198" height="798" rx="18" fill="none" stroke="#e5dfd2" stroke-width="2"/>
+
+  <!-- ===================== ZONE 1 · UNDERSTAND ===================== -->
+  <text x="60" y="64" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#5b50c7">01 · IT UNDERSTANDS YOU</text>
+
+  <!-- You -->
+  <circle cx="128" cy="150" r="34" fill="#fffdf8" stroke="#c9c2b2" stroke-width="1.5"/>
+  <circle cx="128" cy="140" r="10" fill="#57534a"/>
+  <path d="M108,166 a20,14 0 0,1 40,0" fill="#57534a"/>
+  <text x="128" y="212" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f1d1a">You</text>
+
+  <!-- Orient conversation card -->
+  <rect x="330" y="92" width="400" height="130" rx="12" fill="#fffdf8" stroke="#5b50c7" stroke-width="1.5"/>
+  <text x="352" y="124" font-size="17" font-weight="bold" fill="#1f1d1a">Orient <tspan fill="#8a8375" font-size="14" font-style="italic">· the conversation</tspan></text>
+  <text x="352" y="150" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#57534a">grounds in the real code before it asks anything</text>
+  <text x="352" y="172" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#57534a">leans on your reasoning · the orchestra of context</text>
+  <text x="352" y="194" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#57534a">pressure-tests the idea with you, never just accepts it</text>
+
+  <!-- arrows you <-> orient -->
+  <path d="M172,128 C 230,108 270,108 322,116" fill="none" stroke="#57534a" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="247" y="96" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-style="italic" fill="#57534a">your vision, your why</text>
+  <path d="M322,196 C 270,208 230,204 174,176" fill="none" stroke="#5b50c7" stroke-width="1.5" marker-end="url(#arrP)"/>
+  <text x="247" y="232" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-style="italic" fill="#5b50c7">your intent, reflected back</text>
+  <text x="247" y="248" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-style="italic" fill="#5b50c7">until it surprises you</text>
+
+  <!-- North Star -->
+  <path d="M758,157 H 828" stroke="#57534a" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="840" y="112" width="300" height="90" rx="12" fill="#f4f1fb" stroke="#5b50c7" stroke-width="2"/>
+  <path d="M878,140 l6,14 15,2 -11,10 3,15 -13,-8 -13,8 3,-15 -11,-10 15,-2 z" fill="#5b50c7"/>
+  <text x="912" y="150" font-size="17" font-weight="bold" fill="#1f1d1a">North Star</text>
+  <text x="920" y="172" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#57534a">your vision in a few</text>
+  <text x="920" y="190" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#57534a">sentences, confirmed by you</text>
+
+  <!-- divider -->
+  <line x1="60" y1="286" x2="1140" y2="286" stroke="#e5dfd2" stroke-width="1.5"/>
+
+  <!-- ===================== ZONE 2 · ORCHESTRATE ===================== -->
+  <text x="60" y="326" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#0e9f8a">02 · IT ORCHESTRATES THE BUILD</text>
+
+  <!-- North Star rail -->
+  <path d="M990,202 V 348 H 320" fill="none" stroke="#5b50c7" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <text x="655" y="340" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-style="italic" fill="#5b50c7">the North Star is handed to every agent, verbatim</text>
+
+  <!-- Plan chip -->
+  <rect x="60" y="392" width="150" height="102" rx="12" fill="#fffdf8" stroke="#c9c2b2" stroke-width="1.5"/>
+  <text x="82" y="424" font-size="16" font-weight="bold" fill="#1f1d1a">Plan</text>
+  <text x="82" y="448" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#57534a">provable steps,</text>
+  <text x="82" y="465" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#57534a">each with its own</text>
+  <text x="82" y="482" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#57534a">done-check</text>
+
+  <path d="M210,443 H 262" stroke="#57534a" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Execute card -->
+  <rect x="270" y="376" width="290" height="134" rx="12" fill="#fffdf8" stroke="#0e9f8a" stroke-width="1.5"/>
+  <text x="292" y="408" font-size="17" font-weight="bold" fill="#1f1d1a">Execute <tspan fill="#8a8375" font-size="14" font-style="italic">· fresh window</tspan></text>
+  <text x="292" y="432" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#57534a">builds with no memory of the debate,</text>
+  <text x="292" y="449" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#57534a">proves the work with its own eyes</text>
+  <rect x="292" y="464" width="56" height="24" rx="12" fill="#e9f5f2" stroke="#0e9f8a" stroke-width="1"/>
+  <text x="320" y="480" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#0e9f8a">build</text>
+  <rect x="356" y="464" width="86" height="24" rx="12" fill="#e9f5f2" stroke="#0e9f8a" stroke-width="1"/>
+  <text x="399" y="480" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#0e9f8a">ui-design</text>
+  <text x="452" y="480" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8a8375">its own skills</text>
+
+  <path d="M560,428 H 622" stroke="#57534a" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Critique card -->
+  <rect x="630" y="376" width="290" height="134" rx="12" fill="#fffdf8" stroke="#5b50c7" stroke-width="1.5"/>
+  <text x="652" y="408" font-size="17" font-weight="bold" fill="#1f1d1a">Critique <tspan fill="#8a8375" font-size="14" font-style="italic">· fresh window</tspan></text>
+  <text x="652" y="434" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#57534a"><tspan font-weight="bold" fill="#5b50c7">1</tspan>  the vision — did it hit the North Star?</text>
+  <text x="652" y="456" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#57534a"><tspan font-weight="bold" fill="#5b50c7">2</tspan>  the code — checks run, every line read</text>
+  <text x="652" y="488" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-style="italic" fill="#8a8375">judges the build before you ever see it</text>
+
+  <!-- defects back -->
+  <path d="M630,522 C 596,540 560,540 560,522 M630,522 L 622,516 M630,522 L 624,530" fill="none" stroke="#b04a3f" stroke-width="0"/>
+  <path d="M700,510 C 680,548 500,548 480,514" fill="none" stroke="#b04a3f" stroke-width="1.3" stroke-dasharray="4 4" marker-end="url(#arr)"/>
+  <text x="590" y="556" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" font-style="italic" fill="#b04a3f">a fail goes back with the exact defects</text>
+
+  <path d="M920,428 H 982" stroke="#57534a" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Approve -->
+  <rect x="990" y="392" width="150" height="102" rx="12" fill="#f0f7ee" stroke="#4a7c3f" stroke-width="1.5"/>
+  <path d="M1024,428 l10,11 20,-22" fill="none" stroke="#4a7c3f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1065" y="440" font-size="16" font-weight="bold" fill="#1f1d1a">Approve</text>
+  <text x="1012" y="466" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#57534a">you say yes — the one</text>
+  <text x="1012" y="483" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#57534a">call it never makes</text>
+
+  <!-- divider -->
+  <line x1="60" y1="590" x2="1140" y2="590" stroke="#e5dfd2" stroke-width="1.5"/>
+
+  <!-- ===================== ZONE 3 · IMPROVE ===================== -->
+  <text x="60" y="630" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#a87f1f">03 · IT IMPROVES ITSELF</text>
+
+  <!-- self-improver card -->
+  <rect x="60" y="654" width="330" height="110" rx="12" fill="#fffdf8" stroke="#a87f1f" stroke-width="1.5"/>
+  <text x="82" y="686" font-size="17" font-weight="bold" fill="#1f1d1a">Self-improving agent</text>
+  <text x="82" y="710" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#57534a">runs on its own, in the background</text>
+  <text x="82" y="728" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#57534a">mines the moments you pushed back</text>
+  <text x="82" y="750" font-family="Helvetica, Arial, sans-serif" font-size="11.5" font-style="italic" fill="#8a8375">🔒 walled off — can never touch the core</text>
+
+  <path d="M390,690 H 448" stroke="#a87f1f" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M390,730 H 448 L 448,730" stroke="#a87f1f" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- skills library -->
+  <rect x="456" y="654" width="300" height="50" rx="10" fill="#f4f1fb" stroke="#5b50c7" stroke-width="1.5"/>
+  <text x="478" y="678" font-size="15" font-weight="bold" fill="#1f1d1a">Skills <tspan font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#57534a">— it sharpens its own how-to files</tspan></text>
+  <text x="478" y="695" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#5b50c7">tested against a real case · only what wins survives</text>
+
+  <!-- brain -->
+  <rect x="456" y="714" width="300" height="50" rx="10" fill="#e9f5f2" stroke="#0e9f8a" stroke-width="1.5"/>
+  <text x="478" y="738" font-size="15" font-weight="bold" fill="#1f1d1a">Brain <tspan font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#57534a">— what it learns about you</tspan></text>
+  <text x="478" y="755" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#0e9f8a">plain markdown you own · point it at your vault</text>
+
+  <!-- feedback to next session -->
+  <path d="M756,690 C 860,690 920,676 968,640" fill="none" stroke="#0e9f8a" stroke-width="1.5" stroke-dasharray="5 5" marker-end="url(#arrT)"/>
+  <text x="990" y="676" font-family="Helvetica, Arial, sans-serif" font-size="12.5" font-style="italic" fill="#0e9f8a">every session after</text>
+  <text x="990" y="694" font-family="Helvetica, Arial, sans-serif" font-size="12.5" font-style="italic" fill="#0e9f8a">starts sharper —</text>
+  <text x="990" y="712" font-family="Helvetica, Arial, sans-serif" font-size="12.5" font-style="italic" fill="#0e9f8a">say it once,</text>
+  <text x="990" y="730" font-family="Helvetica, Arial, sans-serif" font-size="12.5" font-style="italic" fill="#0e9f8a">it holds forever</text>
+</svg>
