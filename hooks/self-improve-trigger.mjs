@@ -88,6 +88,7 @@ const HOOKS_DIR = dirname(fileURLToPath(import.meta.url)); // this hook's own di
 const ORIENT_DIR = join(HOME, ".orient");
 const CONFIG = join(ORIENT_DIR, "config.json");
 const CLEAN_STAMP = join(ORIENT_DIR, "_clean-last.json");
+const SKILLS_CLEAN_STAMP = join(ORIENT_DIR, "_clean-skills-last.json");
 const LOG = join(ORIENT_DIR, "self-improve.log");
 const LOCK = join(ORIENT_DIR, "_self-improve.lock");
 const MINED_STATE = join(ORIENT_DIR, "_mined-state.json");
@@ -200,17 +201,19 @@ function childEnv() {
   return e;
 }
 
-function cleanDue() {
+// Weekly cadence, shared mechanism: each pass keeps its own stamp file so the brain clean and
+// the skills clean run on independent weekly clocks and never consume each other's turn.
+function cleanDue(stamp) {
   try {
-    const { at } = JSON.parse(readFileSync(CLEAN_STAMP, "utf8"));
+    const { at } = JSON.parse(readFileSync(stamp, "utf8"));
     return Date.now() - new Date(at).getTime() >= WEEK_MS;
   } catch { return true; } // never cleaned, or unreadable stamp: due
 }
 
-function stampClean() {
+function stampClean(stamp) {
   try {
     mkdirSync(ORIENT_DIR, { recursive: true });
-    writeFileSync(CLEAN_STAMP, JSON.stringify({ at: new Date().toISOString() }));
+    writeFileSync(stamp, JSON.stringify({ at: new Date().toISOString() }));
   } catch {}
 }
 
@@ -445,13 +448,23 @@ async function main() {
       }
     }
 
-    if (brain && cleanDue()) {
+    if (brain && cleanDue(CLEAN_STAMP)) {
       if (!DRY) appendLog("FIRED clean-the-brain");
       fire(
         "Run in clean-the-brain mode. The brain vault is at " + brain + ". " +
         "When you finish, append one dated line to your run-log at " + LOG + " saying what you changed, or 'nothing to change'."
       );
-      if (!DRY) stampClean();
+      if (!DRY) stampClean(CLEAN_STAMP);
+    }
+
+    // The weekly skill-library health pass. Needs no brain configured; same weekly stamp mechanism, its own clock.
+    if (cleanDue(SKILLS_CLEAN_STAMP)) {
+      if (!DRY) appendLog("FIRED clean-skills");
+      fire(
+        "Run in clean-skills mode. The usage log is at " + join(ORIENT_DIR, "skill-usage.json") + ". " +
+        "When you finish, append one dated line to your run-log at " + LOG + " saying what you flagged, or 'nothing to change'."
+      );
+      if (!DRY) stampClean(SKILLS_CLEAN_STAMP);
     }
   } catch {}
   process.exit(0);

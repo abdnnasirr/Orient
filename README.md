@@ -65,16 +65,28 @@ Say a correction once and it holds. And you can **watch it work**: a one-page da
 
 ## Quick start
 
-You need [Claude Code](https://claude.com/claude-code).
+You need [Claude Code](https://claude.com/claude-code). Installing Orient is a conversation, not a procedure: hand Claude Code one message and it sets everything up, proves it, and tells you what it did.
+
+```
+Clone https://github.com/abdnnasirr/Orient (skip if it's already cloned on this machine).
+Then read docs/SETUP.md in it and follow it exactly: install Orient globally, verify
+everything works, then tell me plainly what you set up.
+```
+
+It installs into `~/.claude` globally, checks its own work, and hands back a plain summary. `docs/SETUP.md` carries the detail.
+
+### By hand
+
+If you would rather do it yourself:
 
 ```bash
-git clone https://github.com/abdnnasirr/orient.git
-cd orient
+git clone https://github.com/abdnnasirr/Orient
+cd Orient
 node adapters/claude/install.mjs           # dry run: shows what it would link
 node adapters/claude/install.mjs --apply   # symlinks agents + skills into ~/.claude
 ```
 
-Add one line to your `~/.claude/CLAUDE.md` pointing at the overview, `@/path/to/orient/core/orient-overview.md`, and Orient orients on every request without being asked (`/orient` also triggers it explicitly). The two hooks are two small blocks you paste into one settings file, so the self-improver runs on its own (`hooks/README.md` shows exactly what to paste). Then just talk to it. Zero dependencies: plain Node and plain markdown, everything readable in the repo you just cloned.
+Add one line to your `~/.claude/CLAUDE.md` pointing at the overview, `@/path/to/Orient/core/orient-overview.md`, and Orient orients on every request without being asked (`/orient` also triggers it explicitly). The three hooks are three small blocks you paste into one settings file, so the self-improver runs on its own and skill use gets measured (`hooks/README.md` shows exactly what to paste, and `docs/SETUP.md` walks the whole thing). Then just talk to it. Zero dependencies: plain Node and plain markdown, everything readable in the repo you just cloned.
 
 ## How it compares
 
@@ -121,15 +133,18 @@ orient/
     test-prompts/             proves prompt changes against evals
     write-brain/              files durable knowledge into the brain
     clean-brain/              the brain's weekly health pass
+    clean-skills/              the skill library's weekly health pass
   evals/
     README.md                 how proof cases work (your gold cases stay local, gitignored)
   hooks/
     README.md                 how to wire the hooks
     core-wall.mjs             the wall around the core files
     self-improve-trigger.mjs  fires the self-improver as sessions grow
+    skill-usage.mjs           meters which skills get used (fail-open)
     wall-unit.sh              the wall's test suite
     wall-proof.sh             the wall proven against a live run
     self-improve-unit.sh      the trigger's slicing and recovery, proven
+    skill-usage-unit.sh       the usage meter's test suite
   adapters/
     claude/install.mjs        symlinks agents + skills into ~/.claude (dry-run by default)
   surface/
