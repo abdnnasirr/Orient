@@ -2,7 +2,7 @@
 
 **The self-improving AI system that understands you before it builds.**
 
-![version](https://img.shields.io/badge/version-0.1.0-blue)
+![version](https://img.shields.io/badge/version-0.1.1-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![status](https://img.shields.io/badge/status-living%20draft-orange)
 
