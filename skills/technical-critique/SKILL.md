@@ -42,7 +42,7 @@ A failure that was already there is not this build's defect; one the change intr
 - **Defect:** a real standard above is broken. Blocks.
 - **Nit:** your own taste. Advisory, never blocks.
 
-Fail only on a Blocker or a Defect, and order the verdict worst first, so the one bug that matters is never buried under nits.
+Fail only on a Blocker or a Defect, and order the verdict worst first, so the one bug that matters is never buried under nits. State only what you verified — an unconfirmed cause is not a Blocker or a Defect, it's a flagged unknown, since a guess presented as fact sends the fixer chasing a mechanism that was never broken.
 
 ## Do not flag
 

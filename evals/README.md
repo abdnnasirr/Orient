@@ -12,7 +12,7 @@ Do not make evals for everything. Use them when the artifact has repeatable beha
 
 The public repo ships this method, not the user's gold cases.
 
-Actual eval case files in this folder are gitignored by default. Mine them from real transcripts and accepted outputs for the local user. They teach Orient a user's taste; they should not ship as the framework's public truth.
+Actual eval case files in this folder are gitignored by default. Mine them from real transcripts and accepted outputs for the local user. They teach Orient a user's taste; they should not ship as the harness's public truth.
 
 Use this shape:
 

@@ -1,6 +1,6 @@
 {
-  "name": "orient-framework",
-  "version": "0.1.1",
+  "name": "orient-harness",
+  "version": "0.1.2",
   "description": "A portable rulebook where orienting is the routing: one spine (Orient, Plan, Execute, Critique, Approve) with two optional stages.",
   "type": "module",
   "license": "MIT",

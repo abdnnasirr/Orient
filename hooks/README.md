@@ -1,6 +1,6 @@
 # Hooks
 
-Three hooks run the framework's self-improving loop: a trigger that fires the self-improving agent as a session compacts, a wall that keeps that agent off the core, and a usage meter that records which skills actually get used so the library can be pruned instead of only grown. Wire the trigger and the meter into your settings; the trigger wires the wall into every run it spawns.
+Three hooks run the harness's self-improving loop: a trigger that fires the self-improving agent as a session compacts, a wall that keeps that agent off the core, and a usage meter that records which skills actually get used so the library can be pruned instead of only grown. Wire the trigger and the meter into your settings; the trigger wires the wall into every run it spawns.
 
 ## The three hooks
 

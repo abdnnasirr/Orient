@@ -20,3 +20,8 @@ skills/content/
 core/the-core-idea.html
 surface/self-improver.html
 surface/design-skills-inventory.md
+
+# personal skills, local-only, not shipped
+skills/docx-build-verify/
+skills/launch/
+skills/resume-bullets/
