@@ -22,12 +22,15 @@ Read every changed line. These are classes of failure, not a checklist to tick, 
 - **Fit:** it extends what was there, instead of bolting a near-duplicate beside it.
 - **Correctness:** it does the right thing in the normal case.
 - **Edges:** empty, null, zero, one, many, the boundary, the off-by-one.
+- **Tail-drop:** an order-plus-limit query can silently exclude exactly the rows a feature exists to surface — an "upcoming" or "further out" list sorted ascending with a limit shows only the soonest N and drops everything past it, the opposite of the ask, with no error to catch it.
 - **Failure:** errors are caught, not swallowed, and nothing is left half-done on a throw.
+- **False confidence:** a caught error that renders as a valid empty or success state (a failed drafts read showing "0 drafts") is worse than an uncaught one — it looks verified, not broken, and can recreate the exact bug the build exists to fix inside its own new error path.
 - **Shared state:** races and ordering, anything two things touch at once.
 - **Trust:** untrusted input is checked, and nothing secret is logged or exposed.
 - **Regressions:** what worked before still works.
 - **Coverage:** for a port or rebuild, everything in the surface being replaced actually moved — not just the pages that got attention first, with the rest left as untouched old chrome wearing a "done" label.
 - **Tests:** they would actually fail if the code broke, not just pass.
+- **Cited evidence:** a quote or citation about a source — a log line, a spec, a prior result — can be fabricated inside the code itself, not just in a chat reply: a docstring, a comment, or a test's own assertion. Grep the exact string against the real source before accepting it; a test asserting a citation that appears nowhere in the log it claims is the highest-risk shape, since it's built to look like proof and can pass silently forever.
 - **Dead weight:** code built for a need that is not here yet.
 
 A line you cannot follow is a defect, not your failure.

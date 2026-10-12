@@ -12,8 +12,10 @@ Great design is one strong idea, expressed at deliberate levels, held to a concr
 **Before any pixels, understand what the whole is for** — the client, the audience, and the goal this screen serves — then decide the one idea it expresses and the feeling someone should get from it, and let every later choice serve that.
 
 - **Draw the concept from that purpose, never invent it in isolation.** A homepage seen only by non-members exists to move them to join; a screen that ignores its role in the larger product reads generic no matter how clean it looks. The audience picks the direction, not your taste.
+- **When the brief names or shows a concrete reference, inspect the literal thing (real CSS, fonts, palette) before writing code** — building a known style from memory of what it "should" look like is the top reason a taste-heavy pass misses.
 - **This is the move that separates intentional design from generic output.** A veteran starts from a point of view rooted in the goal; a vibe coder starts from a component. Emotion belongs here too, earned because the concept calls for it, never a flourish bolted on after.
 - **Classify the mode before you build:** a fresh screen, an overhaul, or a light polish that must preserve an existing identity — misjudging this is the top source of bad output, because a polish that strips real photos, brand color, and established motion loses the very thing that worked.
+- **An approved mockup locks the look, never the interactivity or the information architecture.** It proves the visual system renders, not what's clickable, what has real actions, or what shows live state — design those separately, even once the visual system is signed off, or the result is a poster, not a product.
 - **Know when the brief is out of scope for this spine.** Dense product UI, data tables, multi-step forms, editors, and realtime surfaces are their own disciplines; name that rather than forcing landing-page instincts onto them.
 - **Ask at most one sharp either/or question, and only on genuine divergence** — where two real directions fork and you cannot confidently infer. If you can infer, build; a dump of questions is not diligence.
 

@@ -15,7 +15,7 @@ Read across the whole vault for seven kinds of rot, and fix each:
 - **contradictions between pages** — resolve them, keep the truer claim, note what changed.
 - **stale claims newer entries have superseded** — update them.
 - **orphan pages with no inbound links** — link them in, or prune them.
-- **important concepts mentioned but lacking their own page** — give them one.
+- **important concepts mentioned but lacking their own page** — give them one, except the vault's own reserved filenames (index.md, log.md, north-stars.md, AGENTS.md) showing up in prose — those are infrastructure, not concepts.
 - **missing cross-references** — add the links.
 - **data gaps** — flag what is thin, and note the questions worth pursuing next.
 - **index or log drift** — entries in index.md or log.md that no longer match the pages; bring them back in sync.

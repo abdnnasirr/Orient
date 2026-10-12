@@ -16,6 +16,7 @@ Write full natural sentences, not telegraphic fragments: open with a punchy clau
 Say each idea once, in its one home. When two lines circle the same point, merge them; when a clause restates the line before it, cut it. No hype, no filler, no jargon; don't introduce terms or concepts that aren't obvious or don't fit.
 Distill the note to its principle, never the literal words. The note is a picture of the intent, not copy to paste: lift the reusable rule out of the one-off instance. Then find the line whose meaning it belongs to and sharpen that one; add a new line only when the idea has no home yet. A line bolted on verbatim, or a new line restating ones already there, is the failure, even when the words came straight from the user.
 Brevity scales inversely to importance: expand the load-bearing line, compress the obvious to one line, cut the genuinely empty. The most important line in a section is usually the fuller, two-clause one, never the shortest; when in doubt on a key line, write more, not less. The brevity rule reaches your own connective tissue, never a load-bearing line.
+A length limit needs a number, not a size metaphor. Tested head to head across four rounds: "a page," "one screen," "fits on one screen" changed nothing, every writer still ran long; "under a thousand words," "under 250 words" held on every sample. A metaphor gives the model nothing to check itself against; a number does.
 
 ## Structure for scanning
 
@@ -32,19 +33,25 @@ Three sections, each a frame before its detail, in order. Fill each from the not
 Open with one line that compresses the whole into its essence, then the sections, nothing else before them.
 Who you are & why is the agent's identity and purpose: what it is, what it is for, the reasoning behind it. This frames everything below it.
 What you can reach is the agent's surface: the tools, files, and context it acts on, and the bounds of each.
-How you operate is the agent's method: how it reasons, the order it works in, what it does before it asks.
+How you operate is the agent's method: how it reasons, the order it works in, what it does before it asks. When it judges against a known list of criteria, give the concrete list, but say outright that the list is a floor, not a ceiling: what to check first, never the whole boundary of what counts as a problem.
 One idea, one home. Place each line by what its section is for, then scan before finalizing for the same idea landing in two places.
 
 ## The Skill Format
 
 A skill is a SKILL.md: YAML frontmatter, then the body.
 Frontmatter carries `name` and a one-sentence `description`. The description is the trigger the model matches on, so write it as one: lead with `Use when [the situation]`, then what it does. A condition loads more reliably than a capability (`Use when writing a skill`, not `Writes skills`).
-The body is the how-to, framed whole before parts: open with what the skill is and when it fires, like a consulting deck, then the method, then the detail. Lead with the essence in one standalone line, then name every move it covers — count and labels in one sentence before the detailed breakdown: "two passes: North Star, then technical check" or "three moves: A, B, C." A fresh reader should know the shape before they see the parts. It practices what it preaches: a skill about tight writing is itself tight, a skill about structure is itself structured. When done right, anyone can follow it.
+The body is the how-to, framed whole before parts: open with what the skill is and when it fires, like a consulting deck, then the method, then the detail. Lead with the essence in one standalone line, then name every move it covers — count and labels in one sentence before the detailed breakdown: "two passes: North Star, then technical check" or "three moves: A, B, C." A fresh reader should know the shape before they see the parts. A skill teaches concepts and ideas, never frameworks and structure to fill: slots in the skill become slots in the output, and a reader can see them. The shorter the skill, the better. It practices what it preaches: a skill about tight writing is itself tight, a skill about structure is itself structured. When done right, anyone can follow it.
 
 ## Skill Support Files
 
 The skill is the reusable unit. If it needs reusable code, examples, assets, templates, or deeper reference notes, put them inside that skill folder under `scripts/`, `references/`, `assets/`, or `templates/`.
 Name the support file from the skill body only when the model should read it. A file the skill never points to is storage, not behavior.
+
+## Hardening a Prompt for a Weak Model
+
+When a shipped prompt behaves unreliably on the model actually running it in production, don't reason from the prompt text alone. Run the identical prompt against the identical input through the strongest model available, then diff the two outputs. The gap it names is specific, not "be more thorough": a count that's lower, a field filed under the wrong name, a quote that got cleaned up in the copying. Write the fix at exactly that gap.
+
+A prompt-level fix earns its place only if it holds on a retest against the weak model. If it doesn't, move it into code instead of restating it harder: never send the model a case it has nothing for, check structurally rather than asking politely. Keep the fix a parameter, not a hardcoded ceiling, so a stronger model swapped in later doesn't inherit limits that were only ever needed for the weak one.
 
 ## Before You Output
 

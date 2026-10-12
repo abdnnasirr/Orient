@@ -14,6 +14,7 @@ Learn the terrain in both directions before you touch anything.
 - **Down into the code:** find the thing you are about to build or extend, read how it actually works, and trace what it connects to and what depends on it, so you extend the real thing instead of bolting a near-duplicate beside it.
 - **Up into the purpose:** trace it to what it is for, who it serves and what it should make them do, and how it fits the larger thing it is part of. A homepage is the homepage of a specific site for a specific client with a goal, never a homepage in the abstract.
 - **In practice:** adding an event card to a new page means first reading the existing card, seeing what it already links to, and noticing the nuances a newcomer would miss.
+- **Reproduce a real person's reported bug before diagnosing it.** A code-read theory is a hypothesis, not a fix — walk their exact steps and see the actual failure first.
 
 **This is the line between a veteran and a vibe coder.** The vibe coder does what the task literally says; the veteran understands the dependencies and the intent first, and that understanding is what keeps the change correct.
 
@@ -28,16 +29,20 @@ Learn the terrain in both directions before you touch anything.
 - **Reuse before you add.**
 - **Change only what the goal needs,** and resist refactoring around it.
 - **Fix the root, not the symptom.**
+- **Never manufacture your own access.** Pulling a live credential from a session, forging a header, or hitting the backend directly to route around a flaky UI is an unauthorized production write, not a shortcut — use the app's real flow or the project's designated data tool, or stop and ask if that's genuinely blocked.
 - **Ship a real end-to-end slice that actually works,** never a hollow demo that only looks done.
+- **State keyed to a reusable identity gets swept at reuse, and a toggle reads ground truth, never a lagging proxy.** Ephemeral state tied to a chat, session, or slot must be cleared at every seam that reassigns that identity (new, switch, archive), or a stale value bleeds into the new occupant; and a toggle or switch UI must reflect the real process/registration state, not a health-check or heartbeat that refreshes slower than the action itself, or a second press races the first.
 
 **If you cannot say what you are changing in one sentence,** the work is large or unfamiliar enough to belong to build-intensive instead.
 
 ## Prove it, deliver it clean
 
 - **Keep one runnable check and iterate against it as you go,** so you know it works the whole way and not only at the end.
-- **Prove it functionally:** cite the command and its output, and never call it done without a check that actually ran.
+- **Prove it functionally:** cite the command and its output, and never call it done without a check that actually ran. An accepted request is not a finished job — for an async step (a queued render, a background job), poll to real completion and inspect the actual output, not just a 200 or a returned ID; and when the change is meant to reach a public or customer-facing surface, confirm it there, not only in an admin API or your own logs, since the two can disagree even when both look successful.
 - **A verification run never touches a live directory:** when it writes to a shared build or cache folder, give it an isolated copy — a worktree, a temp checkout — whenever a dev server or other live process shares that folder, or the proof clobbers the very thing it was proving.
 - **The rig can lie before the code does:** a backgrounded browser tab freezes CSS animations and transitions at their start state, so a measurement taken there reports a false defect that was never real (finish or cancel every running animation first); a resize call can silently settle at the wrong viewport, so confirm the actual dimensions match what you asked for before trusting any check taken at that breakpoint; and some things (an installed PWA's OS chrome, a native permission prompt) the rig can never render at all, headless or not — say so instead of letting a browser PASS imply that part is proven too.
+- **A pipe between the check and the decision can swallow the check's own answer.** `pytest ... | tail -1 && git push` gates on `tail`'s exit code, not pytest's — the suite can fail with two real failures and the chain still reads clean and pushes. Run the check unpiped when its result decides what happens next, or gate explicitly (`pipefail`, `${PIPESTATUS[0]}`, a dedicated hook) — never trust a chain where the pass/fail decision passed through a filter first.
+- **A build tool's static scanner can silently drop what it can't see, with no error anywhere.** Tailwind (and any codegen step that extracts names by scanning literal source text, not runtime values — CSS Modules, i18n key extraction) only emits output for a class/key that appears as a complete literal string; one assembled by interpolation or a computed lookup type-checks clean and renders with no console error, yet its rule is never generated. For a purely visual/CSS change, keep responsive and variant-prefixed classes as full literal strings, and verify the compiled output (the stylesheet, computed style) actually contains the expected rule — a clean type check and a quiet console prove nothing here.
 - **Never let the first real run of an irreversible action (a push, an email, a charge) be the proof — simulate it dry first.**
 - **The artifact arrives clean,** the code and the proof, with none of your own reasoning narrated above it.
 - **Neither your own view of a file nor a prior command's `cd` reaches the user.** Reading an artifact only renders it into your own context, and a working directory does not survive between Bash calls — open the artifact where the user looks, and re-state absolute paths every call.
