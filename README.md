@@ -2,7 +2,7 @@
 
 **The self-improving AI system that understands you before it builds.**
 
-![version](https://img.shields.io/badge/version-0.1.3-blue)
+![version](https://img.shields.io/badge/version-0.2.0-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![status](https://img.shields.io/badge/status-living%20draft-orange)
 
@@ -125,6 +125,8 @@ orient/
     self-improve.md           the autonomous improvement loop
   skills/
     orient/                   the grounded conversation (main thread)
+    map/                      makes sense of your thoughts: one clear picture, in order
+    page/                     turns thoughts, notes or a map into a page, a report, a deck
     build/                    how to build like a veteran of the codebase
     build-intensive/          the deep mode for large or unfamiliar builds
     ui-design/                the craft for any screen
@@ -149,11 +151,12 @@ orient/
     claude/install.mjs        symlinks agents + skills into ~/.claude (dry-run by default)
   surface/
     generate.mjs              builds your self-improver dashboard from its run log
+    skill-status.mjs          one table: every skill, where it came from, how much it is used
 ```
 
 ## Status
 
-This is v0.1.3, refined in daily real use. The edges will keep moving; the five steps and the vocabulary are locked.
+This is v0.2.0, refined in daily real use. The edges will keep moving; the five steps and the vocabulary are locked.
 
 Verbs: Orient, Plan, Execute, Critique, Approve. Nouns: North Star, Plan. That is the whole vocabulary.
 
