@@ -5,7 +5,7 @@ description: Use for the technical pass of a critique (judging a build's code), 
 
 # Technical critique
 
-This is the technical pass of a critique: how to read a build's code and find what is actually wrong, without becoming a nitpicker. The order is fixed. Run the checks before you judge, hunt the highest-stakes failures first, and rate what you find so the one bug that matters is never buried.
+This is the technical pass of a critique: how to read a build's code and find what is actually wrong, without becoming a nitpicker. The order is fixed. Run the checks before you judge, hunt the highest-stakes failures first, then the bloat, and rate what you find so the one bug that matters is never buried.
 
 ## Run the checks before you judge
 
@@ -27,13 +27,24 @@ Read every changed line. These are classes of failure, not a checklist to tick, 
 - **False confidence:** a caught error that renders as a valid empty or success state (a failed drafts read showing "0 drafts") is worse than an uncaught one — it looks verified, not broken, and can recreate the exact bug the build exists to fix inside its own new error path.
 - **Shared state:** races and ordering, anything two things touch at once.
 - **Trust:** untrusted input is checked, and nothing secret is logged or exposed.
-- **Regressions:** what worked before still works.
+- **Regressions:** what worked before still works. Grep the callers of every changed function, since a change can break code it never touches.
 - **Coverage:** for a port or rebuild, everything in the surface being replaced actually moved — not just the pages that got attention first, with the rest left as untouched old chrome wearing a "done" label.
 - **Tests:** they would actually fail if the code broke, not just pass.
 - **Cited evidence:** a quote or citation about a source — a log line, a spec, a prior result — can be fabricated inside the code itself, not just in a chat reply: a docstring, a comment, or a test's own assertion. Grep the exact string against the real source before accepting it; a test asserting a citation that appears nowhere in the log it claims is the highest-risk shape, since it's built to look like proof and can pass silently forever.
-- **Dead weight:** code built for a need that is not here yet.
 
 A line you cannot follow is a defect, not your failure.
+
+## Then hunt the bloat
+
+Working is not enough: code that runs but leaves the codebase harder to read fails a standard the user holds. A clear case below is a Defect; one that is only your preference is a Nit.
+- **Code judo:** a reframe that makes whole branches, helpers or layers disappear. Push to delete complexity, not to move it around.
+- **Spaghetti growth:** new special-case if-statements or one-off flags scattered through an existing flow mean the design is missing a piece.
+- **Layers that do not earn their place:** a wrapper with one caller, a pass-through helper, an abstraction with one use.
+- **Dead weight:** code, options or config built for a need that is not here yet.
+- **Muddy types:** casts, `any`, or optional fields hiding what the data really is.
+- **Comments doing the code's job:** a comment explaining what the code does, instead of why.
+- **Giant files:** a change that pushes a file past 1,000 lines should split it first.
+- **The 30-second test:** a reader cannot find where a value comes from and what can change it.
 
 ## Judge the change, not the repo
 
@@ -45,7 +56,7 @@ A failure that was already there is not this build's defect; one the change intr
 - **Defect:** a real standard above is broken. Blocks.
 - **Nit:** your own taste. Advisory, never blocks.
 
-Fail only on a Blocker or a Defect, and order the verdict worst first, so the one bug that matters is never buried under nits. State only what you verified — an unconfirmed cause is not a Blocker or a Defect, it's a flagged unknown, since a guess presented as fact sends the fixer chasing a mechanism that was never broken.
+Say each finding in plain English: what the code does, what goes wrong, and what it costs if left. Fail only on a Blocker or a Defect, and order the verdict worst first, so the one bug that matters is never buried under nits. State only what you verified — an unconfirmed cause is not a Blocker or a Defect, it's a flagged unknown, since a guess presented as fact sends the fixer chasing a mechanism that was never broken.
 
 ## Do not flag
 
