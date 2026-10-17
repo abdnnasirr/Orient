@@ -38,6 +38,14 @@ check "self-improve (~/.claude)"   2 "$HOME_DIR/.claude/agents/self-improve.md"
 check "orient-overview role"       2 "$REPO/core/orient-overview.md"
 check "global CLAUDE.md"           2 "$HOME_DIR/.claude/CLAUDE.md"
 check "the wall itself"            2 "$REPO/hooks/core-wall.mjs"
+check "automatic editor selector"  2 "$REPO/hooks/self-improver.mjs"
+check "automatic trigger routing"  2 "$REPO/hooks/self-improve-trigger.mjs"
+check "Codex adapter installer"    2 "$REPO/adapters/codex/install.mjs"
+check "NEW Codex adapter file"     2 "$REPO/adapters/codex/_new.mjs" "Write"
+check "Codex startup instructions" 2 "${CODEX_HOME:-$HOME_DIR/.codex}/AGENTS.md" "Write"
+check "Codex agent instructions"   2 "${CODEX_HOME:-$HOME_DIR/.codex}/agents/execute.toml" "Write"
+check "shared automatic editor choice" 2 "$HOME_DIR/.orient/config.json" "Write"
+check "private adapter state"      2 "$HOME_DIR/.orient/codex/adapter.json" "Write"
 check "NEW file inside a core dir" 2 "$REPO/skills/orient/_new.md" "Write"
 
 echo ""
@@ -48,6 +56,23 @@ check "write-brain skill"          0 "$REPO/skills/write-brain/SKILL.md"
 check "clean-brain skill"          0 "$REPO/skills/clean-brain/SKILL.md"
 check "scratch under write-prompts" 0 "$REPO/skills/write-prompts/_walltest_DELETE_ME.md" "Write"
 check "the brain vault"            0 "$HOME_DIR/Obsidian/a-note.md" "Write"
+check "self-improvement run log"   0 "$HOME_DIR/.orient/self-improve.log" "Write"
+
+echo ""
+echo "=== missing startup files and aliases stay protected (isolated home) ==="
+WALL_TMP="$(mktemp -d)"
+trap 'rm -rf "$WALL_TMP"' EXIT
+mkdir -p "$WALL_TMP/user" "$WALL_TMP/codex-target"
+ORIENT_USER_HOME="$WALL_TMP/user" check "NEW selection config" 2 "$WALL_TMP/user/.orient/config.json" "Write"
+ORIENT_USER_HOME="$WALL_TMP/user" check "NEW Claude instructions" 2 "$WALL_TMP/user/.claude/CLAUDE.md" "Write"
+# The test does not override CODEX_HOME: its configured value, if any, remains authoritative.
+if [ -z "${CODEX_HOME:-}" ]; then
+  ORIENT_USER_HOME="$WALL_TMP/user" check "NEW Codex instructions" 2 "$WALL_TMP/user/.codex/AGENTS.md" "Write"
+  ln -s "$WALL_TMP/codex-target" "$WALL_TMP/user/.codex"
+  ORIENT_USER_HOME="$WALL_TMP/user" check "Codex startup via real target" 2 "$WALL_TMP/codex-target/agents/new.toml" "Write"
+  ORIENT_USER_HOME="$WALL_TMP/user" check "Codex startup via link" 2 "$WALL_TMP/user/.codex/agents/new.toml" "Write"
+fi
+ORIENT_USER_HOME="$WALL_TMP/user" check "ordinary notes still editable" 0 "$WALL_TMP/user/notes/example.md" "Write"
 
 echo ""
 echo "=== safety edges ==="

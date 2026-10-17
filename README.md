@@ -2,11 +2,11 @@
 
 **The self-improving AI system that understands you before it builds.**
 
-![version](https://img.shields.io/badge/version-0.2.0-blue)
+![version](https://img.shields.io/badge/version-0.3.0-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![status](https://img.shields.io/badge/status-living%20draft-orange)
 
-We've all had this: you explain exactly what you want, the goal, the reasoning, the why, and the AI builds something else. It coded, but it never saw your vision. Orient fixes that at the root. It is a system where the AI **finally understands you** before anything is built, where real builds run through **orchestrated agents** in fresh windows, each **judged** against your vision, and where the whole thing is **self-improving**, so it gets better every session you use it. Orient runs inside Claude Code.
+We've all had this: you explain exactly what you want, the goal, the reasoning, the why, and the AI builds something else. It coded, but it never saw your vision. Orient fixes that at the root. It is a system where the AI **finally understands you** before anything is built, where real builds run through **orchestrated agents** in fresh windows, each **judged** against your vision, and where the whole thing is **self-improving**, so it gets better every session you use it. Orient runs inside Claude Code and Codex.
 
 ![The Orient system](docs/assets/system.svg)
 
@@ -65,7 +65,7 @@ Say a correction once and it holds. And you can **watch it work**: a one-page da
 
 ## Quick start
 
-You need [Claude Code](https://claude.com/claude-code). Installing Orient is a conversation, not a procedure: hand Claude Code one message and it sets everything up, proves it, and tells you what it did.
+You need [Claude Code](https://claude.com/claude-code) or [Codex](https://developers.openai.com/codex/). Installing Orient is a conversation, not a procedure: give either tool one message and it sets everything up, proves it, and tells you what it did.
 
 ```
 Clone https://github.com/abdnnasirr/Orient (skip if it's already cloned on this machine).
@@ -73,7 +73,7 @@ Then read docs/SETUP.md in it and follow it exactly: install Orient globally, ve
 everything works, then tell me plainly what you set up.
 ```
 
-It installs into `~/.claude` globally, checks its own work, and hands back a plain summary. `docs/SETUP.md` carries the detail.
+It installs globally for the tool you are using, checks its own work, and hands back a plain summary. Both tools use the same skills in this repo, so a skill is edited once. During setup, choose one tool to make automatic improvements: Claude or Codex. It learns from its own sessions; both tools receive the updated skills. `docs/SETUP.md` carries the detail.
 
 ### By hand
 
@@ -82,11 +82,20 @@ If you would rather do it yourself:
 ```bash
 git clone https://github.com/abdnnasirr/Orient
 cd Orient
-node adapters/claude/install.mjs           # dry run: shows what it would link
-node adapters/claude/install.mjs --apply   # symlinks agents + skills into ~/.claude
+# Claude Code
+node adapters/claude/install.mjs           # dry run
+node adapters/claude/install.mjs --apply   # links agents + skills into ~/.claude
+
+# Codex
+node adapters/codex/install.mjs            # dry run
+node adapters/codex/install.mjs --apply --verify
 ```
 
-Add one line to your `~/.claude/CLAUDE.md` pointing at the overview, `@/path/to/Orient/core/orient-overview.md`, and Orient orients on every request without being asked (`/orient` also triggers it explicitly). The three hooks are three small blocks you paste into one settings file, so the self-improver runs on its own and skill use gets measured (`hooks/README.md` shows exactly what to paste, and `docs/SETUP.md` walks the whole thing). Then just talk to it. Zero dependencies: plain Node and plain markdown, everything readable in the repo you just cloned.
+**Claude:** add one line to your `~/.claude/CLAUDE.md` pointing at the overview, `@/path/to/Orient/core/orient-overview.md`, and wire the three hooks as described in `docs/SETUP.md`.
+
+**Codex:** the installer links skills into `~/.agents/skills`, adds the overview to `~/.codex/AGENTS.md`, and configures the agents and hooks. It enables background improvement only if Codex is your chosen self-improver; adding Codex keeps an existing Claude setup in charge. Start a fresh session and review/trust the Orient hooks in `/hooks`. To use an existing personal guidance file too, pass `--preferences /path/to/preferences.md`; it stays private. See `adapters/codex/README.md` for requirements and verification.
+
+The installers keep the shared instructions in this repo; generated Codex files refresh from them at session start. Claude's setup stays in place when you add Codex. Zero dependencies: plain Node and plain markdown, everything readable in the repo you just cloned.
 
 ## How it compares
 
@@ -149,6 +158,7 @@ orient/
     skill-usage-unit.sh       the usage meter's test suite
   adapters/
     claude/install.mjs        symlinks agents + skills into ~/.claude (dry-run by default)
+    codex/install.mjs         links the same skills and installs Codex's global setup
   surface/
     generate.mjs              builds your self-improver dashboard from its run log
     skill-status.mjs          one table: every skill, where it came from, how much it is used

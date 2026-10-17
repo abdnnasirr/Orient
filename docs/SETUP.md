@@ -1,6 +1,20 @@
 # Setting up Orient
 
-You are a fresh Claude Code, and someone just asked you to install Orient. This file is your instructions. Follow it top to bottom, prove every step, then tell them plainly what you did.
+You are Claude Code or Codex, and someone just asked you to install Orient. This file is your instructions. Prove the installation before telling them it is done.
+
+## Choose the self-improver
+
+**Both tools share the skills; one tool maintains them automatically.** Choose Claude or Codex, never both. The chosen tool learns from its own sessions and applies tested improvements to the shared skills. Both tools receive those improvements. Sessions from the other tool are not automatically passed over for review.
+
+Read `~/.orient/config.json` for an existing `selfImprover` choice. Respect a choice the user has already made. Otherwise explain the choice in plain words and ask which tool should handle automatic improvements. Keep an existing Claude setup on Claude unless the user wants to switch.
+
+Save `"selfImprover": "claude"` or `"selfImprover": "codex"` in that file, preserving every other setting. A missing choice keeps older installations on Claude. Any other value stops background improvement until corrected; it does not stop compaction.
+
+Before switching, let existing background work finish. Then update the choice and rerun the Codex installer if Codex is installed, so its compaction trigger matches the selection. Each trigger checks the choice again before starting work, including in a session opened before the switch.
+
+**If you are Codex:** follow [the Codex setup](../adapters/codex/README.md). It installs the same shared skills and agent instructions using Codex's own configuration. Leave any existing Claude installation in place.
+
+**If you are Claude Code:** follow the steps below. They are the existing Claude setup.
 
 ## What Orient is (so you can explain it later)
 
@@ -83,19 +97,19 @@ Merge these entries into that file. If it already exists, keep everything in it 
 }
 ```
 
-The `PreCompact` entry is the load-bearing one; it is how the loop fires at all. The `Skill` entry is the usage meter: it records which skills get used so the weekly skill-library pass can surface the unused ones. `hooks/README.md` in the repo is the full reference if you need it.
+The `PreCompact` entry starts the loop only when Claude is the chosen self-improver. When Codex is chosen, this Claude trigger does nothing. The `Skill` entry is the usage meter: it records which skills get used so the weekly skill-library pass can surface the unused ones. `hooks/README.md` in the repo is the full reference if you need it.
 
 ### 5. Config (one optional file)
 
-Config lives at `~/.orient/config.json`. It is optional. If you set anything, create the directory and file:
+Config lives at `~/.orient/config.json`. Keep the `selfImprover` choice from above and preserve existing settings. The brain and Claude token are optional:
 
-Before you ask the human anything, look for what is already true on this machine. Check the common Obsidian locations (`~/Obsidian`, `~/Documents/Obsidian`, `~/Library/Mobile Documents/iCloud~md~obsidian/Documents`) and any obvious notes folder. Never ask a question you could have answered yourself; what you find shapes the one question in the handoff below.
+Before asking about the brain, look for what is already true on this machine. Check the common Obsidian locations (`~/Obsidian`, `~/Documents/Obsidian`, `~/Library/Mobile Documents/iCloud~md~obsidian/Documents`) and any obvious notes folder. Never ask a question you could have answered yourself; what you find shapes the one question in the handoff below.
 
 - **`brain`** (ask the human, see the handoff below): a path to a markdown notes folder or Obsidian vault. Set it, and the self-improver files what it learns there. Leave it unset and brain writes are skipped.
 - **`oauthToken`** (optional, do not block on it): a long-lived token from `claude setup-token`. The background self-improver runs detached and cannot borrow this session's login, so without this token its runs may fail to authenticate. Getting the token is the human's own action (it is a credential; do not create or handle it for them). It can be added later, so do not hold up the install waiting on it. Mention it once and move on.
 
 ```json
-{ "brain": "/path/to/vault", "oauthToken": "..." }
+{ "selfImprover": "claude", "brain": "/path/to/vault", "oauthToken": "..." }
 ```
 
 ## Verify before you declare success
@@ -105,6 +119,8 @@ An install that fails silently is worse than a script that fails loudly. Prove e
 1. **Every symlink resolves.** Run `ls -l ~/.claude/agents` and `ls -l ~/.claude/skills`. Confirm `execute.md`, `critique.md`, `self-improve.md` and the skill folders (`orient`, `build`, and the rest) point into `REPO`, and that none are broken. The clean proof: re-run `node REPO/adapters/claude/install.mjs` (dry run) and confirm the Orient entries all read as already linked, with nothing left to link.
 2. **The import path exists on disk.** Confirm the `@REPO/core/orient-overview.md` line is present in `~/.claude/CLAUDE.md`, and that the file it points at actually exists: `test -f REPO/core/orient-overview.md && echo ok`.
 3. **The hooks are wired and their scripts resolve.** Confirm `~/.claude/settings.json` contains all three hook entries, and that all three scripts exist: `test -f REPO/hooks/self-improve-trigger.mjs && test -f REPO/hooks/core-wall.mjs && test -f REPO/hooks/skill-usage.mjs && echo ok`.
+
+4. **Only the chosen tool starts background improvement.** Confirm the saved `selfImprover` choice and run `node --test adapters/codex/install.test.mjs`. Its isolated checks cover both selections and prove that the other trigger leaves improvement state untouched. Do not compact a real session merely to test this.
 
 ## Tell them what you set up
 
@@ -116,7 +132,7 @@ Now hand it back in plain words. No technical terms: do not say symlinks, settin
 >
 > **It orchestrates the build.** Real work goes to fresh agents: one builds, a separate one judges the result against your goal before you ever see it. You approve at the end; that call is always yours.
 >
-> **It improves itself.** A background agent learns from every session, both the moments you push back and the moments things go well. It sharpens its own skills and keeps what it learns, so the more you use it, the less you have to explain.
+> **It improves itself.** Your chosen tool, Claude or Codex, learns from its sessions in the background and applies tested improvements. Both tools use the updated skills. Tell the user which tool is selected; the other tool does not start automatic edits or send its sessions over for review.
 
 Then the brain, shaped by what you found in step 5. This is the one part that touches their own files, so say that plainly rather than letting them find out:
 
@@ -125,4 +141,4 @@ Then the brain, shaped by what you found in step 5. This is the one part that to
 
 Either way, close with: everything else configures itself as you use it, so there is nothing else to set up.
 
-If they hesitate or ask questions, explain plainly and let them decide later; nothing breaks without the brain. Do not turn this into a setup interview. The one question above is the whole of it. A questionnaire is the opposite of what Orient is.
+If they hesitate or ask questions, explain plainly and let them decide later; nothing breaks without the brain. Keep setup brief, and do not ask again about choices they have already made.

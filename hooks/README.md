@@ -10,6 +10,8 @@ Three hooks run the harness's self-improving loop: a trigger that fires the self
 
 ## Wiring
 
+The wiring below is for Claude Code. When selected as the self-improver, Codex uses the same incremental trigger through `adapters/codex/pre-compact.mjs`; its installer configures Codex's own events. See [the Codex setup](../adapters/codex/README.md). Its autonomous child uses a native restricted filesystem profile instead of Claude's Edit/Write hook. Skill-read observations are kept separately from Claude's Skill-tool counts.
+
 Add these to `.claude/settings.json` (project or `~/.claude/settings.json`), with the paths pointing at your clone:
 
 ```json
@@ -44,20 +46,22 @@ The PreCompact entry is the one that matters: it is how the loop fires at all. T
 
 ## Config
 
-`~/.orient/config.json` is a plain JSON file the trigger reads; both keys are optional:
+`~/.orient/config.json` is a plain JSON file the trigger reads. Preserve existing settings when adding a key:
+
+- **`selfImprover`** — `"claude"` or `"codex"`, the only tool allowed to start automatic improvements. Missing means Claude for existing installations; any other value stops background improvement while compaction continues. Both triggers check it before touching improvement state or spawning. Let running work finish before switching, then rerun the Codex installer if installed. Sessions from the unselected tool are not automatically reviewed.
 
 - **`brain`** — path to a markdown vault. Set, it gates on the brain work: the agent files durable knowledge there and cleans it weekly. Unset, all brain writes are skipped.
 - **`oauthToken`** — a long-lived token from `claude setup-token`. The detached child cannot reuse the live session's auth, so without this it may fail to authenticate.
 
 ```json
-{ "brain": "/path/to/your/vault", "oauthToken": "..." }
+{ "selfImprover": "claude", "brain": "/path/to/your/vault", "oauthToken": "..." }
 ```
 
-Every fire and skip leaves a dated line in `~/.orient/self-improve.log`, so you can see the loop working.
+Every fire and skip leaves a dated, tool-labelled line in `~/.orient/self-improve.log`, so you can see the loop working.
 
 ## Proof
 
-- `wall-unit.sh` — deterministic, model-free: feeds the wall the exact stdin a PreToolUse hook receives and asserts every verdict (20 cases).
+- `wall-unit.sh` — deterministic, model-free: feeds the wall the exact stdin a PreToolUse hook receives and asserts every verdict.
 - `self-improve-unit.sh` — same discipline for the trigger's slicing, offset, and fail-open behavior.
 - `skill-usage-unit.sh` — same discipline for the usage meter: counts increment, timestamps are written, and malformed or non-Skill input exits 0 without corrupting the log.
 - `wall-proof.sh` — the live leg: spawns a real headless child and shows the block on disk.

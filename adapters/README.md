@@ -10,4 +10,7 @@ Orient itself owns the neutral files:
 - `hooks/` for event-bound behavior.
 - `evals/` for test cases that prove prompt and skill changes.
 
-An adapter should not define Orient. It should only install or expose these files to a runtime such as Claude Code.
+An adapter should not define Orient. It should only install or expose these files to a runtime such as Claude Code or Codex.
+
+- `claude/` keeps the existing Claude installation.
+- `codex/` links the same skills and generates Codex's startup and agent configuration from the shared files.

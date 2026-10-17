@@ -14,8 +14,8 @@
  * assumed: hooks/wall-proof.sh spawns a real child and shows the block on disk.
  *
  * PORTABILITY: the core set is computed from THIS file's own location (import.meta.url),
- * so it ships wherever the repo is cloned, no hardcoded user paths. The one path outside
- * the repo, the global ~/.claude/CLAUDE.md, is derived from homedir().
+ * so it ships wherever the repo is cloned, no hardcoded user paths. External startup
+ * and selection paths come from the user's home and existing Codex home configuration.
  *
  * COVERAGE via realpath: every core target is resolved with realpathSync, and so is the
  * edit's file_path. Because ~/.claude/agents/*.md and ~/.claude/skills/* are symlinks
@@ -45,20 +45,29 @@ const CORE_RELATIVE = [
   "agents/self-improve.md", // the agent's own system prompt: it must not rewrite its own guardrails
   "core/orient-overview.md", // the role
   "hooks/core-wall.mjs", // the wall itself: it must not edit away its own bars
+  "hooks/self-improve-trigger.mjs", // automatic edit routing and its guardrails
+  "hooks/self-improver.mjs", // the user's single automatic editor selection
+  "adapters/codex", // generated startup instructions and the bounded runner
 ];
 
-// The one core file outside the repo: the global instructions, a real file (not a link).
-const CORE_ABSOLUTE = [join(homedir(), ".claude", "CLAUDE.md")];
+const USER_HOME = process.env.ORIENT_USER_HOME || homedir();
+const CORE_ABSOLUTE = [
+  join(USER_HOME, ".claude", "CLAUDE.md"),
+  process.env.CODEX_HOME || join(USER_HOME, ".codex"),
+  join(USER_HOME, ".orient", "config.json"),
+  join(USER_HOME, ".orient", "codex"),
+  join(USER_HOME, ".orient", "_wall-settings.json"),
+];
 
-// Resolve every core entry to its realpath once. Missing entries are skipped (a path
-// that does not exist cannot be the target of an edit on disk).
+// Existing aliases collapse to one path. Resolve missing leaves through their
+// existing ancestor too, so a Write cannot create a protected startup/config file.
 function realOrNull(p) {
   try { return realpathSync(p); } catch { return null; }
 }
 
 const CORE_REAL = [
-  ...CORE_RELATIVE.map((r) => realOrNull(join(REPO, r))),
-  ...CORE_ABSOLUTE.map(realOrNull),
+  ...CORE_RELATIVE.map((r) => resolveTarget(join(REPO, r))),
+  ...CORE_ABSOLUTE.map(resolveTarget),
 ].filter(Boolean);
 
 // Is `target` the same file as `core`, or inside it (for the skill dirs)?
@@ -121,7 +130,7 @@ async function main() {
       block(
         "Core wall: " + filePath + " is a CORE file (" + core + "). " +
           "The self-improving agent may sharpen the write-* skills and the brain, but never the core " +
-          "(orient, execute, critique, its own prompt, the role, the global CLAUDE.md, or this wall)."
+          "(Orient instructions, agent prompts, startup configuration, automatic editor selection, or the wall)."
       );
     }
   }

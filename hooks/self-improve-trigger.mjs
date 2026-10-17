@@ -40,8 +40,10 @@
  *                         SLICE_KEEP are deleted, so slices (incl. any giant legacy full-
  *                         transcript slice) never accumulate on disk.
  *
- * Config (model-agnostic): ~/.orient/config.json -> { "brain": "<vault path>" }. A plain
- * file any runner can read. No brain configured -> the brain work is skipped (config-gated).
+ * Config (shared): ~/.orient/config.json -> { "brain": "<vault path>",
+ * "selfImprover": "claude" | "codex" }. Only that runtime fires; legacy config defaults
+ * to Claude. Invalid/unreadable selection disables automatic edits, never compaction.
+ * No brain configured -> the brain work is skipped (config-gated).
  *
  * Recursion guard: the spawned run inherits CLAUDE_SELF_IMPROVE_CHILD=1, and this hook
  * no-ops when that is set, so a self-improve run never spawns another. (We do NOT use
@@ -78,14 +80,18 @@ import {
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { homedir } from "node:os";
+import { readSelfImprover } from "./self-improver.mjs";
 
 const DRY = process.argv.includes("--dry");
+const CODEX = process.argv.includes("--runtime=codex");
+let codexRuntime;
+const RUNTIME = CODEX ? "codex" : "claude";
 // The deterministic test seam: run all real disk logic (slice + advance offset + lock +
 // cleanup) but skip the actual spawn of the claude child. See the header. Tests only.
 const NO_SPAWN = process.env.SELF_IMPROVE_NO_SPAWN === "1";
 const HOME = homedir();
 const HOOKS_DIR = dirname(fileURLToPath(import.meta.url)); // this hook's own dir, so paths ship
-const ORIENT_DIR = join(HOME, ".orient");
+const ORIENT_DIR = join(process.env.ORIENT_USER_HOME || HOME, ".orient");
 const CONFIG = join(ORIENT_DIR, "config.json");
 const CLEAN_STAMP = join(ORIENT_DIR, "_clean-last.json");
 const SKILLS_CLEAN_STAMP = join(ORIENT_DIR, "_clean-skills-last.json");
@@ -116,7 +122,7 @@ const WALL_SETTINGS = join(ORIENT_DIR, "_wall-settings.json");
 // this fire and is loadable by the child and by future sessions. Path is computed from this
 // hook's own location, so it ships with the repo. The installer is glob-discovery: it links
 // every skills/<name>/ that has a SKILL.md and skips real dirs — see adapters/claude/install.mjs.
-const INSTALLER = join(HOOKS_DIR, "..", "adapters/claude/install.mjs");
+const INSTALLER = join(HOOKS_DIR, "..", CODEX ? "adapters/codex/install.mjs" : "adapters/claude/install.mjs");
 
 // Run the installer in --apply mode, TOTALLY fail-open: any error (installer throws, node
 // missing, installer file absent) is swallowed and logged — it must NEVER make this hook exit
@@ -164,7 +170,7 @@ function writeWallSettings() {
 function pass() { process.exit(0); }
 
 // A self-improve run must never trigger another.
-if (process.env.CLAUDE_SELF_IMPROVE_CHILD === "1") pass();
+if (process.env.CLAUDE_SELF_IMPROVE_CHILD === "1" || process.env.ORIENT_SELF_IMPROVE_CHILD === "1") pass();
 
 function readStdin() {
   return new Promise((resolve) => {
@@ -225,7 +231,7 @@ function stampClean(stamp) {
 function appendLog(line) {
   try {
     mkdirSync(ORIENT_DIR, { recursive: true });
-    appendFileSync(LOG, "[" + new Date().toISOString() + "] " + line + "\n");
+    appendFileSync(LOG, "[" + new Date().toISOString() + "] [runtime=" + RUNTIME + "] " + line + "\n");
   } catch {}
 }
 
@@ -363,6 +369,12 @@ function claudeArgs(promptText, wallSettings) {
 }
 
 function fire(promptText) {
+  promptText = "This automatic self-improvement run was triggered by " + RUNTIME + " compaction. Include [runtime=" + RUNTIME + "] in your change summaries and run-log entries. " + promptText;
+  if (CODEX) {
+    try { codexRuntime.fireCodex(promptText, { dry: DRY, noSpawn: NO_SPAWN, brain: brainPath(), log: appendLog }); }
+    catch (error) { appendLog("Codex self-improver failed to start: " + error.message); }
+    return;
+  }
   // Generate the wall settings fresh each spawn so the wired hook path is always current.
   let wallSettings;
   try { wallSettings = writeWallSettings(); } catch { wallSettings = WALL_SETTINGS; }
@@ -386,6 +398,14 @@ function fire(promptText) {
 
 async function main() {
   try {
+    // Gate before installers, transcript offsets, slices, locks or cadence stamps.
+    // Stale hooks remain inert even before their installer has removed them.
+    const owner = readSelfImprover(ORIENT_DIR);
+    if (owner !== RUNTIME) {
+      if (DRY) console.log(`SKIP ${RUNTIME}: automatic self-improver is ${owner || "disabled (invalid configuration)"}.`);
+      pass();
+    }
+    if (CODEX) codexRuntime = await import("../adapters/codex/self-improve.mjs");
     // Activate any skill drafted on a prior fire BEFORE we spawn the child. Fully fail-open
     // (see runInstaller): it can never make this hook exit non-zero. Runs every real fire, so
     // creation reliably reaches the toolbox no matter which prior run wrote the skill.
@@ -461,7 +481,8 @@ async function main() {
     if (cleanDue(SKILLS_CLEAN_STAMP)) {
       if (!DRY) appendLog("FIRED clean-skills");
       fire(
-        "Run in clean-skills mode. The usage log is at " + join(ORIENT_DIR, "skill-usage.json") + ". " +
+        "Run in clean-skills mode. This run uses " + RUNTIME + ". The " + (CODEX ? "partial skill-read observations are" : "usage log is") + " at " + join(ORIENT_DIR, CODEX ? "skill-reads.codex.json" : "skill-usage.json") + ". " +
+        (CODEX ? "These observations record recognized reads only; a missing entry does not mean a skill was never used. " : "") +
         "When you finish, append one dated line to your run-log at " + LOG + " saying what you flagged, or 'nothing to change'."
       );
       if (!DRY) stampClean(SKILLS_CLEAN_STAMP);

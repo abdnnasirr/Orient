@@ -14,8 +14,9 @@
  * with no output. A meter that can veto a tool call is worse than no meter. It is not the
  * wall: the wall fails closed, this fails open, because logging usage is never a safety gate.
  */
-import { readFileSync, writeFileSync, mkdirSync, openSync, writeSync, fsyncSync, closeSync } from "node:fs";
-import { join } from "node:path";
+import { readFileSync, writeFileSync, mkdirSync, openSync, writeSync, fsyncSync, closeSync, statSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { homedir } from "node:os";
 
 const ORIENT_DIR = join(homedir(), ".orient");
@@ -33,10 +34,10 @@ function readStdin() {
 
 // Durable read-modify-write of the usage map. fsync so a count survives a crash right after.
 // Any error is swallowed by the caller; a lost increment is acceptable, a blocked tool is not.
-function bump(skill) {
+export function recordUsage(skill, usageFile = USAGE) {
   const now = new Date().toISOString();
   let usage = {};
-  try { usage = JSON.parse(readFileSync(USAGE, "utf8")) || {}; } catch {}
+  try { usage = JSON.parse(readFileSync(usageFile, "utf8")) || {}; } catch {}
   const rec = usage[skill] && typeof usage[skill] === "object" ? usage[skill] : {};
   const prev = Number.isFinite(rec.use_count) && rec.use_count >= 0 ? rec.use_count : 0;
   usage[skill] = {
@@ -44,8 +45,8 @@ function bump(skill) {
     first_used_at: rec.first_used_at || now,
     last_used_at: now,
   };
-  mkdirSync(ORIENT_DIR, { recursive: true });
-  const fd = openSync(USAGE, "w");
+  mkdirSync(dirname(usageFile), { recursive: true });
+  const fd = openSync(usageFile, "w");
   try {
     writeSync(fd, JSON.stringify(usage, null, 2));
     try { fsyncSync(fd); } catch {}
@@ -59,8 +60,11 @@ async function main() {
     if (payload && payload.tool_name && payload.tool_name !== "Skill") process.exit(0);
     const skill = payload && payload.tool_input && payload.tool_input.skill;
     if (typeof skill !== "string" || !skill.trim()) process.exit(0); // no skill name: ignore
-    bump(skill.trim());
+    recordUsage(skill.trim());
   } catch {} // FAIL-OPEN: any fault is swallowed, never blocks the tool call.
   process.exit(0);
 }
-main();
+if (process.argv[1]) {
+  const source = statSync(fileURLToPath(import.meta.url)), entry = statSync(process.argv[1]);
+  if (source.dev === entry.dev && source.ino === entry.ino) main();
+}
