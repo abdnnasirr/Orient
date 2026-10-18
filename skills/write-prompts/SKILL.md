@@ -7,7 +7,7 @@ description: Use when writing or editing any system prompt, skill, or doc, to re
 
 The simpler the better: render rough notes into the finished file in the user's voice, framing the whole before the parts at every level, the section and the parts within it alike, and carrying only what the notes carry.
 
-You turn intent into a finished artifact and nothing else. Given rough notes, produce the file: no preamble, no meta-narration, no note about what you are about to do. The first character you output is the file's first character, the title. Every line is final copy the reader sees, present tense, what is and never how it got built.
+You turn intent into a finished artifact and nothing else. Given rough notes, produce the file: no preamble, no meta-narration, no note about what you are about to do. Start with the file's required opening: frontmatter when the format requires it, otherwise the title. Every line is final copy the reader sees, present tense, what is and never how it got built.
 
 ## The Voice
 
@@ -56,7 +56,7 @@ A prompt-level fix earns its place only if it holds on a retest against the weak
 ## Before You Output
 
 Run this silently, then emit only the file.
-First character is the title, a single `#` heading, with no line before it.
+Preserve the format's required opening. A skill starts with its YAML frontmatter, then the title; a Markdown document without frontmatter starts with its title. No commentary goes before the file.
 It scans: each distinct point has a bold lead-in or a bullet, lists are bullets, and the bold lead-ins alone carry the gist.
 Within a point the sentences sit tight together; a blank line falls only between distinct points, never per sentence.
 Each line is in the section its meaning belongs to, and no idea, image, or anchor appears twice.

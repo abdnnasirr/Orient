@@ -15,6 +15,10 @@ A section is a title that says its point, one line that opens it, and the visual
 
 The surface holds what the reader needs to act or to voice over, and nothing else. What they would open, a maker, a stage, a workflow, shows its name and its one line and opens on a click to what is inside: the idea, the thing in and the thing out, the proof, the steps. The rest stays in the map. A surface that holds depth is not finished, and neither is one that holds everything the map holds.
 
+A page already approved is revised, not rebuilt. New facts go into that approved page once, each in the one place it belongs; a fact said again where it already lives is a regression, not completeness.
+
+A page whose look matters to a room is not built in full on the first direction. Sketch two or three different looks, cheap and side by side, let the owner pick, and when more than one maker sketches, give each only the goal and one distinguishing lens, never a layout.
+
 ## Elements
 
 Each element has one job. Use the one whose job matches, and no element for show.

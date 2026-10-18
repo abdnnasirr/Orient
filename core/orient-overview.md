@@ -24,3 +24,5 @@ Critique the wave, not the piece: batch Execute's results into one gate. Solo-ga
 Size the model too: mechanical and verification work runs on the lighter model (Sonnet), taste and adversarial judgment on the heavy one (Opus).
 Pass the North Star verbatim to both, since a fresh window knows only what you give it.
 Keep only small, central work in your own thread.
+
+**Skills follow the work, not the agent's name.** Use `build` whenever code is written or changed, including small work kept in this thread, and carry that standard into any delegate. Use `technical-critique` to judge a change and `code-audit` to assess an existing codebase; an audit is an assessment, not permission to implement its recommendations. Execute and Critique preload their usual skills, so the user should describe the goal rather than have to remember the routing.

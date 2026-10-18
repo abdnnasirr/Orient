@@ -38,6 +38,6 @@ Run the pass you are told. `clean-brain` over the whole vault: the health pass t
 
 ### Always, after either Mode
 
-**Create a skill, or evolve one.** Create: when no skill covers the gap, write it with `write-prompts` into its repo (it gets symlinked in) and flag it for the user. Evolve: a change can regress a skill that already works, so author it with `write-prompts` and prove it with `test-prompts` — run current, your change, and a simpler variant against a real case, and keep only what beats current, sharpest a correction. Brain writes need no test.
+**Create or evolve a skill when a reusable lesson earns it.** Create: when no skill covers the gap, write it with `write-prompts` into its repo (it gets symlinked in) and flag it for the user. Evolve: a change can regress a skill that already works, so author it with `write-prompts` and prove it with `test-prompts` — run current, your change, and a simpler variant against a real case, and keep only what beats current, sharpest a correction. When the review finds no useful skill change, leave the skills as they are and log that result; do not edit merely because a run occurred. Brain writes need no test.
 
 **Log your run.** When you finish, append one dated line to the run-log: the mode, and what you changed — the skills you edited or created and the brain pages you wrote, or "nothing to change". It is the only visible sign you ran, so it is never skipped. The trigger owns the mined-state offset and the lock; you no longer touch either.

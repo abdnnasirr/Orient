@@ -2,7 +2,7 @@
 
 **The self-improving AI system that understands you before it builds.**
 
-![version](https://img.shields.io/badge/version-0.3.0-blue)
+![version](https://img.shields.io/badge/version-0.4.0-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![status](https://img.shields.io/badge/status-living%20draft-orange)
 
@@ -140,6 +140,7 @@ orient/
     build-intensive/          the deep mode for large or unfamiliar builds
     ui-design/                the craft for any screen
     technical-critique/       the code hunt for Critique's second pass
+    code-audit/               the same hunt, run over code that already exists
     write-prompts/            authors prompt and skill files
     test-prompts/             proves prompt changes against evals
     write-brain/              files durable knowledge into the brain
@@ -166,7 +167,7 @@ orient/
 
 ## Status
 
-This is v0.2.0, refined in daily real use. The edges will keep moving; the five steps and the vocabulary are locked.
+This is v0.4.0, refined in daily real use. The edges will keep moving; the five steps and the vocabulary are locked.
 
 Verbs: Orient, Plan, Execute, Critique, Approve. Nouns: North Star, Plan. That is the whole vocabulary.
 
