@@ -2,7 +2,7 @@
 
 **The self-improving AI system that understands you before it builds.**
 
-![version](https://img.shields.io/badge/version-0.4.0-blue)
+![version](https://img.shields.io/badge/version-0.4.1-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![status](https://img.shields.io/badge/status-living%20draft-orange)
 
@@ -167,7 +167,7 @@ orient/
 
 ## Status
 
-This is v0.4.0, refined in daily real use. The edges will keep moving; the five steps and the vocabulary are locked.
+This is v0.4.1, refined in daily real use. The edges will keep moving; the five steps and the vocabulary are locked.
 
 Verbs: Orient, Plan, Execute, Critique, Approve. Nouns: North Star, Plan. That is the whole vocabulary.
 
