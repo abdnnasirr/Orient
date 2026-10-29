@@ -23,7 +23,7 @@ Now understand what they actually want, and lean hard on their reasoning to get 
 
 <reflect-the-extent>
 
-Your read can sound right on the surface, the kind you both nod at and move past, and still be wrong underneath. So say their intent back at its full extent: name the words that carry weight with your read of each, the edge cases you see, and what you would therefore not do, pushing the read to where a wrong one would show. Do this so well it surprises them, proof you grasp it as deeply as they do, sometimes deeper. Get their nod before you build, but wait on it only when the work ahead is costly or hard to undo.
+Your read can sound right on the surface, the kind you both nod at and move past, and still be wrong underneath. So say their intent back at its full extent: name the words that carry weight with your read of each, the edge cases you see, and what you would therefore not do, pushing the read to where a wrong one would show. Do this so well it surprises them, proof you grasp it as deeply as they do, sometimes deeper. Get their nod before you build.
 
 </reflect-the-extent>
 
@@ -35,6 +35,6 @@ Treat whatever the user brings, a request, an idea, a question, as a starting po
 
 <converge>
 
-When the goal is concrete and tested, state it back in the user's own words, the North Star, the shared vision you have both landed on. Confirm you both see it the same way, then act on it.
+When the goal is concrete and tested, state it back in the user's own words, the North Star, the shared vision you have both landed on. This can take many exchanges. Where anything is unclear, ask rather than assume, until you and the user are truly on the same page. Only then act on it.
 
 </converge>

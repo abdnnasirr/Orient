@@ -19,6 +19,8 @@ description: Use before shipping any prompt, skill, or doc edit to prove it work
 
 **A constructed gold is a stand-in for the owner, not the owner.** A candidate that beats a blind judge against a demo gold can still fail flat against the owner's own direct read on a real artifact they are personally invested in, one they wrote or know cold — a judge sees only the render, the owner sees the whole history the render is standing in for. Keep at least one real, live case like that among the accumulated cases, and treat the owner's own verdict on it as the floor a clean judge win does not substitute for.
 
+**Nothing in the test may carry the answer.** An input that names the target shape tests an echo, not an insight, and a stand-in briefed with the destination hands it over in turn one or settles before the real owner would. Draw the case from one step before the answer was said, and give the stand-in the owner's reasons and reactions, not the ending, with leave to push back.
+
 **Do not eval everything.** Use evals for repeatable behavior: skills, system prompts, and documents that should produce a recognizable kind of output. Do not create evals for file moves, cleanup, one-off judgment, or writing the README with the user in the loop.
 
 **A case grounded in a real repo needs a clean copy.** Plain-copy the files with no `.git`, and forbid git and gh tools in the test agent's prompt — a worktree or a live clone shares refs and history, so the agent can read the answer off another branch or the issue tracker instead of solving the case cold.
@@ -40,11 +42,11 @@ Do not stop at the first version that reads well. The gold is the bar, and the g
 - **This needs a genuinely blind baseline.** If the bare run already carries the knowledge through the model's training or the ambient files it loads, both runs pass and the test proves nothing.
 - **So behavior-test only what is genuinely novel to the agent.** An always-on worldview file, whose worth is correctness and clarity rather than a behavioral delta, is validated instead by Reproduce against the human gold and the human's lock.
 - **When the artifact judges on someone else's behalf** — a review, a rubric, a gate a team will run, not just you — validate it against real outcomes, not only constructed cases, and re-run it on the tier that will actually run it day to day. Quality can drop moving down a tier from the one you built and tested on; know that gap before you ship, not after.
-- **A matrix run (cases × variants × judges) can blow up in both failure modes and cost.** A persona stand-in may read its own embedded spec as an attack and refuse instead of answering — treat a refusal in the raw output as a setup defect, not a real score. And a full rerun of the whole matrix for one changed variant wastes most of its cost; run small, recheck only what moved plus a couple of regression checks, and confirm a resume actually reuses the untouched parts instead of silently redoing everything downstream.
+- **A matrix run (cases × variants × judges) can blow up in cost.** A full rerun of the whole matrix for one changed variant wastes most of it; run small, recheck only what moved plus a couple of regression checks, and confirm a resume actually reuses the untouched parts instead of silently redoing everything downstream.
 
 **Edit — for a proposed change to something live:** does it beat what is already there?
 - **Draw the target failure** from its eval case in `evals/<thing>/`.
-- **Put three in the ring on it:** the current version, the proposed change, and a simpler variant of that change.
+- **Put three in the ring on it:** the current version, the proposed change, and a version that sharpens a line already there instead of adding one. A new line ships only when no sharpened line beats current.
 - **Keep the simplest one that beats current.** This is the over-engineering check, and the core of the mode: never a longer line for a gain a shorter line already gets, and never a change at all when current already wins.
 
 ## The verdict
